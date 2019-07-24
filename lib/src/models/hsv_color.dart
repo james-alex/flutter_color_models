@@ -17,10 +17,10 @@ class HsvColor extends cm.HsvColor with ToColor {
     num hue,
     num saturation,
     num value,
-  ) : assert(hue != null && hue >= 0 && hue <= 360),
-      assert(saturation != null && saturation >= 0 && saturation <= 100),
-      assert(value != null && value >= 0 && value <= 100),
-      super(hue, saturation, value);
+  )   : assert(hue != null && hue >= 0 && hue <= 360),
+        assert(saturation != null && saturation >= 0 && saturation <= 100),
+        assert(value != null && value >= 0 && value <= 100),
+        super(hue, saturation, value);
 
   /// Parses a list for HSV values and returns a [HsvColor].
   ///

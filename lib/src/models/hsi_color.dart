@@ -17,10 +17,10 @@ class HsiColor extends cm.HsiColor with ToColor {
     num hue,
     num saturation,
     num intensity,
-  ) : assert(hue != null && hue >= 0 && hue <= 360),
-      assert(saturation != null && saturation >= 0 && saturation <= 100),
-      assert(intensity != null && intensity >= 0 && intensity <= 100),
-      super(hue, saturation, intensity);
+  )   : assert(hue != null && hue >= 0 && hue <= 360),
+        assert(saturation != null && saturation >= 0 && saturation <= 100),
+        assert(intensity != null && intensity >= 0 && intensity <= 100),
+        super(hue, saturation, intensity);
 
   /// Parses a list for HSI values and returns a [HsiColor].
   ///

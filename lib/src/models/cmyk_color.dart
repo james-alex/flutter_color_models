@@ -17,11 +17,11 @@ class CmykColor extends cm.CmykColor with ToColor {
     num magenta,
     num yellow,
     num black,
-  ) : assert(cyan != null && cyan >= 0 && cyan <= 100),
-      assert(magenta != null && magenta >= 0 && magenta <= 100),
-      assert(yellow != null && yellow >= 0 && yellow <= 100),
-      assert(black != null && black >= 0 && black <= 100),
-      super(cyan, magenta, yellow, black);
+  )   : assert(cyan != null && cyan >= 0 && cyan <= 100),
+        assert(magenta != null && magenta >= 0 && magenta <= 100),
+        assert(yellow != null && yellow >= 0 && yellow <= 100),
+        assert(black != null && black >= 0 && black <= 100),
+        super(cyan, magenta, yellow, black);
 
   /// Parses a list for CMYK values and returns a [CmykColor].
   ///
@@ -68,9 +68,11 @@ class CmykColor extends cm.CmykColor with ToColor {
     assert(cmyk[2] != null && cmyk[2] >= 0 && cmyk[2] <= 1);
     assert(cmyk[3] != null && cmyk[3] >= 0 && cmyk[3] <= 1);
 
-    final List<double> cmykValues = cmyk.map(
-      (double cmykValue) => cmykValue * 100,
-    ).toList();
+    final List<double> cmykValues = cmyk
+        .map(
+          (double cmykValue) => cmykValue * 100,
+        )
+        .toList();
 
     return CmykColor.fromList(cmykValues);
   }

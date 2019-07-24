@@ -18,10 +18,10 @@ class LabColor extends cm.LabColor with ToColor {
     num lightness,
     num a,
     num b,
-  ) : assert(lightness != null && lightness >= 0 && lightness <= 100),
-      assert(a != null && a >= -128 && a <= 127),
-      assert(b != null && b >= -128 && b <= 127),
-      super(lightness, a, b);
+  )   : assert(lightness != null && lightness >= 0 && lightness <= 100),
+        assert(a != null && a >= -128 && a <= 127),
+        assert(b != null && b >= -128 && b <= 127),
+        super(lightness, a, b);
 
   /// Parses a list for LAB values and returns a [LabColor].
   ///

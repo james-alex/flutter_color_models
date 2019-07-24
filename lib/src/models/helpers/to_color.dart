@@ -55,14 +55,30 @@ mixin ToColor on ColorModel {
     assert(color != null);
 
     switch (color.runtimeType) {
-      case CmykColor: color = cm.CmykColor.fromList(color.toList()); break;
-      case HsiColor: color = cm.HsiColor.fromList(color.toList()); break;
-      case HslColor: color = cm.HslColor.fromList(color.toList()); break;
-      case HspColor: color = cm.HspColor.fromList(color.toList()); break;
-      case HsvColor: color = cm.HsvColor.fromList(color.toList()); break;
-      case LabColor: color = cm.LabColor.fromList(color.toList()); break;
-      case RgbColor: color = cm.RgbColor.fromList(color.toList()); break;
-      case XyzColor: color = cm.XyzColor.fromList(color.toList()); break;
+      case CmykColor:
+        color = cm.CmykColor.fromList(color.toList());
+        break;
+      case HsiColor:
+        color = cm.HsiColor.fromList(color.toList());
+        break;
+      case HslColor:
+        color = cm.HslColor.fromList(color.toList());
+        break;
+      case HspColor:
+        color = cm.HspColor.fromList(color.toList());
+        break;
+      case HsvColor:
+        color = cm.HsvColor.fromList(color.toList());
+        break;
+      case LabColor:
+        color = cm.LabColor.fromList(color.toList());
+        break;
+      case RgbColor:
+        color = cm.RgbColor.fromList(color.toList());
+        break;
+      case XyzColor:
+        color = cm.XyzColor.fromList(color.toList());
+        break;
     }
 
     return color;

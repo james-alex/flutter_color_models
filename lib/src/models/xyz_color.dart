@@ -18,10 +18,10 @@ class XyzColor extends cm.XyzColor with ToColor {
     num x,
     num y,
     num z,
-  ) : assert(x != null && x >= 0),
-      assert(y != null && y >= 0),
-      assert(z != null && z >= 0),
-      super(x, y, z);
+  )   : assert(x != null && x >= 0),
+        assert(y != null && y >= 0),
+        assert(z != null && z >= 0),
+        super(x, y, z);
 
   /// Parses a list for XYZ values and returns a [XyzColor].
   ///
@@ -72,9 +72,11 @@ class XyzColor extends cm.XyzColor with ToColor {
     assert(xyz[1] != null && xyz[1] >= 0 && xyz[1] <= 1);
     assert(xyz[2] != null && xyz[2] >= 0 && xyz[2] <= 1);
 
-    final List<double> xyzValues = xyz.map(
-      (double xyzValue) => xyzValue * 100,
-    ).toList();
+    final List<double> xyzValues = xyz
+        .map(
+          (double xyzValue) => xyzValue * 100,
+        )
+        .toList();
 
     return fromList(xyzValues);
   }
