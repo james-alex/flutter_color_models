@@ -1,4 +1,4 @@
-## [0.1.0+1] - January 15, 2019
+## [0.1.0+2] - January 15, 2019
 
 * Updated the color_models package.
 
