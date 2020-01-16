@@ -45,13 +45,13 @@ class HsiColor extends cm.HsiColor with ToColor {
     return RgbColor.fromColor(color).toHsiColor();
   }
 
-  /// Converts a [color] from another color space to HSI.
+  /// Returns a [color] in another color space as a HSI color.
   static HsiColor from(ColorModel color) {
     assert(color != null);
 
     color = ToColor.cast(color);
 
-    final cm.HsiColor hsi = cm.ColorConverter.toHsiColor(color);
+    final hsi = cm.ColorConverter.toHsiColor(color);
 
     return HsiColor(hsi.hue, hsi.saturation, hsi.intensity);
   }

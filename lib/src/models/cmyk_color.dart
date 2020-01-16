@@ -45,13 +45,13 @@ class CmykColor extends cm.CmykColor with ToColor {
     return RgbColor.fromColor(color).toCmykColor();
   }
 
-  /// Converts a [color] from another color space to CMYK.
+  /// Returns a [color] in another color space as a CMYK color.
   static CmykColor from(ColorModel color) {
     assert(color != null);
 
     color = ToColor.cast(color);
 
-    final cm.CmykColor cmyk = cm.ColorConverter.toCmykColor(color);
+    final cmyk = cm.ColorConverter.toCmykColor(color);
 
     return CmykColor(cmyk.cyan, cmyk.magenta, cmyk.yellow, cmyk.black);
   }
@@ -68,11 +68,7 @@ class CmykColor extends cm.CmykColor with ToColor {
     assert(cmyk[2] != null && cmyk[2] >= 0 && cmyk[2] <= 1);
     assert(cmyk[3] != null && cmyk[3] >= 0 && cmyk[3] <= 1);
 
-    final List<double> cmykValues = cmyk
-        .map(
-          (double cmykValue) => cmykValue * 100,
-        )
-        .toList();
+    final cmykValues = cmyk.map((cmykValue) => cmykValue * 100).toList();
 
     return CmykColor.fromList(cmykValues);
   }

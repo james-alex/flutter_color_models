@@ -12,7 +12,7 @@ mixin ToColor on ColorModel {
 
   /// Converts `this` to a [Color].
   Color toColor() {
-    final RgbColor rgb = RgbColor.from(this);
+    final rgb = RgbColor.from(this);
 
     return Color.fromRGBO(rgb.red, rgb.green, rgb.blue, 1.0);
   }

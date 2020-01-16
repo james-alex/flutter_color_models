@@ -46,13 +46,13 @@ class LabColor extends cm.LabColor with ToColor {
     return RgbColor.fromColor(color).toLabColor();
   }
 
-  /// Converts a [color] from another color space to CIELAB.
+  /// Returns a [color] in another color space as a CIELAB color.
   static LabColor from(ColorModel color) {
     assert(color != null);
 
     color = ToColor.cast(color);
 
-    final cm.LabColor lab = cm.ColorConverter.toLabColor(color);
+    final lab = cm.ColorConverter.toLabColor(color);
 
     return LabColor(lab.lightness, lab.a, lab.b);
   }

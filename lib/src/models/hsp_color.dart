@@ -50,13 +50,13 @@ class HspColor extends cm.HspColor with ToColor {
     return RgbColor.fromColor(color).toHspColor();
   }
 
-  /// Converts a [color] from another color space to HSP.
+  /// Returns a [color] in another color space as a HSP color.
   static HspColor from(ColorModel color) {
     assert(color != null);
 
     color = ToColor.cast(color);
 
-    final cm.HspColor hsp = cm.ColorConverter.toHspColor(color);
+    final hsp = cm.ColorConverter.toHspColor(color);
 
     return HspColor(hsp.hue, hsp.saturation, hsp.perceivedBrightness);
   }

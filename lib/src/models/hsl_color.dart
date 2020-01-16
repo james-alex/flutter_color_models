@@ -43,13 +43,13 @@ class HslColor extends cm.HslColor with ToColor {
     return RgbColor.fromColor(color).toHslColor();
   }
 
-  /// Converts a [color] from another color space to HSL.
+  /// Returns a [color] in another color space as a HSL color.
   static HslColor from(ColorModel color) {
     assert(color != null);
 
     color = ToColor.cast(color);
 
-    final cm.HslColor hsl = cm.ColorConverter.toHslColor(color);
+    final hsl = cm.ColorConverter.toHslColor(color);
 
     return HslColor(hsl.hue, hsl.saturation, hsl.lightness);
   }

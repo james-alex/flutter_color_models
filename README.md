@@ -3,7 +3,7 @@
 A wrapper for the color_models plugin with added
 support for Flutter's [Color] class.
 
-See: http://github.com/james-alex/color_models
+See: https://pub.dev/packages/color_models
 
 ## Usage
 

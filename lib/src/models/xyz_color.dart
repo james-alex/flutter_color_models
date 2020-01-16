@@ -50,13 +50,13 @@ class XyzColor extends cm.XyzColor with ToColor {
     return RgbColor.fromColor(color).toXyzColor();
   }
 
-  /// Converts a [color] from another color space to XYZ.
+  /// Returns a [color] in another color space as a XYZ color.
   static XyzColor from(ColorModel color) {
     assert(color != null);
 
     color = ToColor.cast(color);
 
-    final cm.XyzColor xyz = cm.ColorConverter.toXyzColor(color);
+    final xyz = cm.ColorConverter.toXyzColor(color);
 
     return XyzColor(xyz.x, xyz.y, xyz.z);
   }
@@ -72,11 +72,7 @@ class XyzColor extends cm.XyzColor with ToColor {
     assert(xyz[1] != null && xyz[1] >= 0 && xyz[1] <= 1);
     assert(xyz[2] != null && xyz[2] >= 0 && xyz[2] <= 1);
 
-    final List<double> xyzValues = xyz
-        .map(
-          (double xyzValue) => xyzValue * 100,
-        )
-        .toList();
+    final xyzValues = xyz.map((xyzValue) => xyzValue * 100).toList();
 
     return fromList(xyzValues);
   }

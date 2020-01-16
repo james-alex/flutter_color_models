@@ -30,103 +30,103 @@ const List<Color> _testColors = <Color>[
 /// as a [Color] and compared to the original [Color].
 void main() {
   test('CMYK Conversions', () {
-    _testColors.forEach((Color color) {
-      final RgbColor rgbColor = RgbColor.fromColor(color);
-      final CmykColor cmykColor = rgbColor.toCmykColor();
+    for (var color in _testColors) {
+      final rgbColor = RgbColor.fromColor(color);
+      final cmykColor = rgbColor.toCmykColor();
       expect(rgbColor.equals(cmykColor), equals(true));
       expect(cmykColor.toColor(), equals(color));
-    });
+    }
   });
 
   test('HSI Conversions', () {
-    _testColors.forEach((Color color) {
-      final RgbColor rgbColor = RgbColor.fromColor(color);
-      final HsiColor hsiColor = rgbColor.toHsiColor();
+    for (var color in _testColors) {
+      final rgbColor = RgbColor.fromColor(color);
+      final hsiColor = rgbColor.toHsiColor();
       expect(rgbColor.equals(hsiColor), equals(true));
       expect(hsiColor.toColor(), equals(color));
-    });
+    }
   });
 
   test('HSL Conversions', () {
-    _testColors.forEach((Color color) {
-      final RgbColor rgbColor = RgbColor.fromColor(color);
-      final HslColor hslColor = rgbColor.toHslColor();
+    for (var color in _testColors) {
+      final rgbColor = RgbColor.fromColor(color);
+      final hslColor = rgbColor.toHslColor();
       expect(rgbColor.equals(hslColor), equals(true));
       expect(hslColor.toColor(), equals(color));
-    });
+    }
   });
 
   test('HSP Conversions', () {
-    _testColors.forEach((Color color) {
-      final RgbColor rgbColor = RgbColor.fromColor(color);
-      final HspColor hspColor = rgbColor.toHspColor();
+    for (var color in _testColors) {
+      final rgbColor = RgbColor.fromColor(color);
+      final hspColor = rgbColor.toHspColor();
       expect(rgbColor.equals(hspColor), equals(true));
       expect(hspColor.toColor(), equals(color));
-    });
+    }
   });
 
   test('HSV Conversions', () {
-    _testColors.forEach((Color color) {
-      final RgbColor rgbColor = RgbColor.fromColor(color);
-      final HsvColor hsvColor = rgbColor.toHsvColor();
+    for (var color in _testColors) {
+      final rgbColor = RgbColor.fromColor(color);
+      final hsvColor = rgbColor.toHsvColor();
       expect(rgbColor.equals(hsvColor), equals(true));
       expect(hsvColor.toColor(), equals(color));
-    });
+    }
   });
 
   test('LAB Conversions', () {
-    _testColors.forEach((Color color) {
-      final RgbColor rgbColor = RgbColor.fromColor(color);
-      final LabColor labColor = rgbColor.toLabColor();
+    for (var color in _testColors) {
+      final rgbColor = RgbColor.fromColor(color);
+      final labColor = rgbColor.toLabColor();
       expect(rgbColor.equals(labColor), equals(true));
       expect(labColor.toColor(), equals(color));
-    });
+    }
   });
 
   test('XYZ Conversions', () {
-    _testColors.forEach((Color color) {
-      final RgbColor rgbColor = RgbColor.fromColor(color);
-      final XyzColor xyzColor = rgbColor.toXyzColor();
+    for (var color in _testColors) {
+      final rgbColor = RgbColor.fromColor(color);
+      final xyzColor = rgbColor.toXyzColor();
       expect(rgbColor.equals(xyzColor), equals(true));
       expect(xyzColor.toColor(), equals(color));
-    });
+    }
   });
 
   test('Chained Conversions', () {
-    _testColors.forEach((Color color) {
-      Color copy = color;
+    for (var color in _testColors) {
+      var copy = color;
 
-      final CmykColor cmykColor = CmykColor.fromColor(copy);
+      final cmykColor = CmykColor.fromColor(copy);
       copy = cmykColor.toColor();
       expect(copy, equals(color));
 
-      final HsiColor hsiColor = HsiColor.fromColor(copy);
+      final hsiColor = HsiColor.fromColor(copy);
       copy = hsiColor.toColor();
       expect(copy, equals(color));
 
-      final HslColor hslColor = HslColor.fromColor(copy);
+      final hslColor = HslColor.fromColor(copy);
       copy = hslColor.toColor();
       expect(copy, equals(color));
 
-      final HspColor hspColor = HspColor.fromColor(copy);
+      final hspColor = HspColor.fromColor(copy);
       copy = hspColor.toColor();
       expect(copy, equals(color));
 
-      final HsvColor hsvColor = HsvColor.fromColor(copy);
+      final hsvColor = HsvColor.fromColor(copy);
       copy = hsvColor.toColor();
       expect(copy, equals(color));
 
-      final LabColor labColor = LabColor.fromColor(copy);
+      final labColor = LabColor.fromColor(copy);
       copy = labColor.toColor();
       expect(copy, equals(color));
 
-      final RgbColor rgbColor = RgbColor.fromColor(copy);
+      final rgbColor = RgbColor.fromColor(copy);
       copy = rgbColor.toColor();
       expect(copy, equals(color));
 
-      final XyzColor xyzColor = XyzColor.fromColor(copy);
+      final xyzColor = XyzColor.fromColor(copy);
       copy = xyzColor.toColor();
       expect(copy, equals(color));
-    });
+    }
   });
 }

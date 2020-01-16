@@ -45,13 +45,13 @@ class HsvColor extends cm.HsvColor with ToColor {
     return RgbColor.fromColor(color).toHsvColor();
   }
 
-  /// Converts a [color] from another color space to HSV.
+  /// Returns a [color] in another color space as a HSV color.
   static HsvColor from(ColorModel color) {
     assert(color != null);
 
     color = ToColor.cast(color);
 
-    final cm.HsvColor hsv = cm.ColorConverter.toHsvColor(color);
+    final hsv = cm.ColorConverter.toHsvColor(color);
 
     return HsvColor(hsv.hue, hsv.saturation, hsv.value);
   }

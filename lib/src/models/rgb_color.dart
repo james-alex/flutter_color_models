@@ -46,13 +46,13 @@ class RgbColor extends cm.RgbColor with ToColor {
     return RgbColor(color.red, color.green, color.blue);
   }
 
-  /// Converts a [color] from another color space to RGB.
+  /// Returns a [color] in another color space as a RGB color.
   static RgbColor from(ColorModel color) {
     assert(color != null);
 
     color = ToColor.cast(color);
 
-    final cm.RgbColor rgb = cm.ColorConverter.toRgbColor(color);
+    final rgb = color.toRgbColor();
 
     return RgbColor(rgb.red, rgb.green, rgb.blue);
   }
@@ -68,11 +68,7 @@ class RgbColor extends cm.RgbColor with ToColor {
     assert(rgb[1] != null && rgb[1] >= 0 && rgb[1] <= 1);
     assert(rgb[2] != null && rgb[2] >= 0 && rgb[2] <= 1);
 
-    final List<double> rgbValues = rgb
-        .map(
-          (double rgbValue) => rgbValue * 255,
-        )
-        .toList();
+    final rgbValues = rgb.map((rgbValue) => rgbValue * 255).toList();
 
     return fromList(rgbValues);
   }
