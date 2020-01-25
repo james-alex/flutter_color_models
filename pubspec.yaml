@@ -11,7 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  color_models: ^0.2.1
+  color_models: ^0.2.1+2
 
 dev_dependencies:
   flutter_test:
