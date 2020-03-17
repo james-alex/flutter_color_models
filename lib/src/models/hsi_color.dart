@@ -56,6 +56,18 @@ class HsiColor extends cm.HsiColor with ToColor {
     return HsiColor(hsi.hue, hsi.saturation, hsi.intensity);
   }
 
+  /// Returns a [hex] color as a HSI color.
+  ///
+  /// [hex] is case-insensitive and must be `3` or `6` characters
+  /// in length, excluding an optional leading `#`.
+  static HsiColor fromHex(String hex) {
+    assert(hex != null);
+
+    final hsi = cm.HsiColor.fromHex(hex);
+
+    return HsiColor(hsi.hue, hsi.saturation, hsi.intensity);
+  }
+
   /// Returns a [HsiColor] from a list of [hsi] values on a 0 to 1 scale.
   ///
   /// [hsi] must not be null and must have exactly 3 values.

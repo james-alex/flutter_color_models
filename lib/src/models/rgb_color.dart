@@ -57,6 +57,18 @@ class RgbColor extends cm.RgbColor with ToColor {
     return RgbColor(rgb.red, rgb.green, rgb.blue);
   }
 
+  /// Returns a [hex] color as a RGB color.
+  ///
+  /// [hex] is case-insensitive and must be `3` or `6` characters
+  /// in length, excluding an optional leading `#`.
+  static RgbColor fromHex(String hex) {
+    assert(hex != null);
+
+    final rgb = cm.RgbColor.fromHex(hex);
+
+    return RgbColor(rgb.red, rgb.green, rgb.blue);
+  }
+
   /// Returns a [RgbColor] from a list of [rgb] values on a 0 to 1 scale.
   ///
   /// [rgb] must not be null and must have exactly 3 values.

@@ -1,6 +1,12 @@
+## [0.1.1] - March 16, 2020
+
+* Updated the color_models package to version 0.2.2+2.
+
+* Added the [fromHex] static method to each of the [ColorModel]s.
+
 ## [0.1.0+2] - January 15, 2019
 
-* Updated the color_models package.
+* Updated the color_models package to version 0.2.1+2.
 
 * Documentation and formatting changes.
 

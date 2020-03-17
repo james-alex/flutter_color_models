@@ -56,6 +56,18 @@ class CmykColor extends cm.CmykColor with ToColor {
     return CmykColor(cmyk.cyan, cmyk.magenta, cmyk.yellow, cmyk.black);
   }
 
+  /// Returns a [hex] color as a CMYK color.
+  ///
+  /// [hex] is case-insensitive and must be `3` or `6` characters
+  /// in length, excluding an optional leading `#`.
+  static CmykColor fromHex(String hex) {
+    assert(hex != null);
+
+    final cmyk = cm.CmykColor.fromHex(hex);
+
+    return CmykColor(cmyk.cyan, cmyk.magenta, cmyk.yellow, cmyk.black);
+  }
+
   /// Returns a [CmykColor] from a list of [cmyk] values on a 0 to 1 scale.
   ///
   /// [cmyk] must not be null and must have exactly 4 values.

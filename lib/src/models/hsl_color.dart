@@ -54,6 +54,18 @@ class HslColor extends cm.HslColor with ToColor {
     return HslColor(hsl.hue, hsl.saturation, hsl.lightness);
   }
 
+  /// Returns a [hex] color as a HSL color.
+  ///
+  /// [hex] is case-insensitive and must be `3` or `6` characters
+  /// in length, excluding an optional leading `#`.
+  static HslColor fromHex(String hex) {
+    assert(hex != null);
+
+    final hsl = cm.HslColor.fromHex(hex);
+
+    return HslColor(hsl.hue, hsl.saturation, hsl.lightness);
+  }
+
   /// Returns a [HslColor] from a list of [hsl] values on a 0 to 1 scale.
   ///
   /// [hsl] must not be null and must have exactly 3 values.

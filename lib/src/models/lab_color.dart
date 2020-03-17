@@ -57,6 +57,18 @@ class LabColor extends cm.LabColor with ToColor {
     return LabColor(lab.lightness, lab.a, lab.b);
   }
 
+  /// Returns a [hex] color as a CIELAB color.
+  ///
+  /// [hex] is case-insensitive and must be `3` or `6` characters
+  /// in length, excluding an optional leading `#`.
+  static LabColor fromHex(String hex) {
+    assert(hex != null);
+
+    final lab = cm.LabColor.fromHex(hex);
+
+    return LabColor(lab.lightness, lab.a, lab.b);
+  }
+
   /// Returns a [LabColor] from a list of [lab] values on a 0 to 1 scale.
   ///
   /// [lab] must not be null and must have exactly 3 values.

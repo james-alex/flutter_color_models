@@ -61,6 +61,18 @@ class XyzColor extends cm.XyzColor with ToColor {
     return XyzColor(xyz.x, xyz.y, xyz.z);
   }
 
+  /// Returns a [hex] color as a CIEXYZ color.
+  ///
+  /// [hex] is case-insensitive and must be `3` or `6` characters
+  /// in length, excluding an optional leading `#`.
+  static XyzColor fromHex(String hex) {
+    assert(hex != null);
+
+    final xyz = cm.XyzColor.fromHex(hex);
+
+    return XyzColor(xyz.x, xyz.y, xyz.z);
+  }
+
   /// Returns a [XyzColor] from a list of [xyz] values on a 0 to 1 scale.
   ///
   /// [xyz] must not be null and must have exactly 3 values.

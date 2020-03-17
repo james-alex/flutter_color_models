@@ -61,6 +61,18 @@ class HspColor extends cm.HspColor with ToColor {
     return HspColor(hsp.hue, hsp.saturation, hsp.perceivedBrightness);
   }
 
+  /// Returns a [hex] color as a HSP color.
+  ///
+  /// [hex] is case-insensitive and must be `3` or `6` characters
+  /// in length, excluding an optional leading `#`.
+  static HspColor fromHex(String hex) {
+    assert(hex != null);
+
+    final hsp = cm.HspColor.fromHex(hex);
+
+    return HspColor(hsp.hue, hsp.saturation, hsp.perceivedBrightness);
+  }
+
   /// Returns a [HspColor] from a list of [hsp] values on a 0 to 1 scale.
   ///
   /// [hsp] must not be null and must have exactly 3 values.

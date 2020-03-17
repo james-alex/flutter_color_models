@@ -2,7 +2,7 @@ name: flutter_color_models
 description: >-
   A wrapper for the color_models plugin with added
   support for Flutter's Color class.
-version: 0.1.0+3
+version: 0.1.1
 homepage: https://github.com/james-alex/flutter_color_models
 
 environment:
@@ -11,7 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  color_models: ^0.2.1+2
+  color_models: ^0.2.2+2
 
 dev_dependencies:
   flutter_test:

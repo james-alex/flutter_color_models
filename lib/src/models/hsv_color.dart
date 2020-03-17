@@ -56,6 +56,18 @@ class HsvColor extends cm.HsvColor with ToColor {
     return HsvColor(hsv.hue, hsv.saturation, hsv.value);
   }
 
+  /// Returns a [hex] color as a HSV color.
+  ///
+  /// [hex] is case-insensitive and must be `3` or `6` characters
+  /// in length, excluding an optional leading `#`.
+  static HsvColor fromHex(String hex) {
+    assert(hex != null);
+
+    final hsv = cm.HsvColor.fromHex(hex);
+
+    return HsvColor(hsv.hue, hsv.saturation, hsv.value);
+  }
+
   /// Returns a [HsvColor] from a list of [hsv] values on a 0 to 1 scale.
   ///
   /// [hsv] must not be null and must have exactly 3 values.
