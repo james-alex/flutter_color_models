@@ -1,3 +1,7 @@
+## [0.1.1+1] - March 17, 2020
+
+* Updated the color_models package to version 0.2.2+3.
+
 ## [0.1.1] - March 16, 2020
 
 * Updated the color_models package to version 0.2.2+2.
