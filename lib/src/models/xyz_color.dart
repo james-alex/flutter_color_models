@@ -19,7 +19,7 @@ class XyzColor extends cm.XyzColor with ToColor {
     num y,
     num z, [
     num alpha = 1.0,
-  ]) :  assert(x != null && x >= 0),
+  ])  : assert(x != null && x >= 0),
         assert(y != null && y >= 0),
         assert(z != null && z >= 0),
         assert(alpha != null && alpha >= 0 && alpha <= 1),

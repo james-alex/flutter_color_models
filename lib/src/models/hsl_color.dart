@@ -18,7 +18,7 @@ class HslColor extends cm.HslColor with ToColor {
     num saturation,
     num lightness, [
     num alpha = 1.0,
-  ]) :  assert(hue != null && hue >= 0 && hue <= 360),
+  ])  : assert(hue != null && hue >= 0 && hue <= 360),
         assert(saturation != null && saturation >= 0 && saturation <= 100),
         assert(lightness != null && lightness >= 0 && lightness <= 100),
         assert(alpha != null && alpha >= 0 && alpha <= 1),

@@ -21,7 +21,7 @@ class RgbColor extends cm.RgbColor with ToColor {
     num green,
     num blue, [
     num alpha = 1.0,
-  ]) :  assert(red != null && red >= 0 && red <= 255),
+  ])  : assert(red != null && red >= 0 && red <= 255),
         assert(green != null && green >= 0 && green <= 255),
         assert(blue != null && blue >= 0 && green <= 255),
         assert(alpha != null && alpha >= 0 && alpha <= 1),

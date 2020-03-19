@@ -18,7 +18,7 @@ class CmykColor extends cm.CmykColor with ToColor {
     num yellow,
     num black, [
     num alpha = 1.0,
-  ]) :  assert(cyan != null && cyan >= 0 && cyan <= 100),
+  ])  : assert(cyan != null && cyan >= 0 && cyan <= 100),
         assert(magenta != null && magenta >= 0 && magenta <= 100),
         assert(yellow != null && yellow >= 0 && yellow <= 100),
         assert(black != null && black >= 0 && black <= 100),

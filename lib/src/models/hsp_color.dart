@@ -21,7 +21,7 @@ class HspColor extends cm.HspColor with ToColor {
     num saturation,
     num perceivedBrightness, [
     num alpha = 1.0,
-  ]) :  assert(hue != null && hue >= 0 && hue <= 360),
+  ])  : assert(hue != null && hue >= 0 && hue <= 360),
         assert(saturation != null && saturation >= 0 && saturation <= 100),
         assert(perceivedBrightness != null &&
             perceivedBrightness >= 0 &&

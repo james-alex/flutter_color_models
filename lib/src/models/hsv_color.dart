@@ -18,7 +18,7 @@ class HsvColor extends cm.HsvColor with ToColor {
     num saturation,
     num value, [
     num alpha = 1.0,
-  ]) :  assert(hue != null && hue >= 0 && hue <= 360),
+  ])  : assert(hue != null && hue >= 0 && hue <= 360),
         assert(saturation != null && saturation >= 0 && saturation <= 100),
         assert(value != null && value >= 0 && value <= 100),
         assert(alpha != null && alpha >= 0 && alpha <= 1),

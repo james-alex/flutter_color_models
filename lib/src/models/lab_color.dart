@@ -19,7 +19,7 @@ class LabColor extends cm.LabColor with ToColor {
     num a,
     num b, [
     num alpha = 1.0,
-  ]) :  assert(lightness != null && lightness >= 0 && lightness <= 100),
+  ])  : assert(lightness != null && lightness >= 0 && lightness <= 100),
         assert(a != null && a >= -128 && a <= 127),
         assert(b != null && b >= -128 && b <= 127),
         assert(alpha != null && alpha >= 0 && alpha <= 1),
