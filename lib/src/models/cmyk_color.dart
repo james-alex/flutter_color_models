@@ -16,26 +16,69 @@ class CmykColor extends cm.CmykColor with ToColor {
     num cyan,
     num magenta,
     num yellow,
-    num black,
-  )   : assert(cyan != null && cyan >= 0 && cyan <= 100),
+    num black, [
+    num alpha = 1.0,
+  ]) :  assert(cyan != null && cyan >= 0 && cyan <= 100),
         assert(magenta != null && magenta >= 0 && magenta <= 100),
         assert(yellow != null && yellow >= 0 && yellow <= 100),
         assert(black != null && black >= 0 && black <= 100),
-        super(cyan, magenta, yellow, black);
+        assert(alpha != null && alpha >= 0 && alpha <= 1),
+        super(cyan, magenta, yellow, black, alpha);
+
+  @override
+  CmykColor withCyan(num cyan) {
+    assert(cyan != null && cyan >= 0 && cyan <= 100);
+
+    return CmykColor(cyan, magenta, yellow, black, alpha);
+  }
+
+  @override
+  CmykColor withMagenta(num magenta) {
+    assert(magenta != null && magenta >= 0 && magenta <= 100);
+
+    return CmykColor(cyan, magenta, yellow, black, alpha);
+  }
+
+  @override
+  CmykColor withYellow(num yellow) {
+    assert(yellow != null && yellow >= 0 && yellow <= 100);
+
+    return CmykColor(cyan, magenta, yellow, black, alpha);
+  }
+
+  @override
+  CmykColor withBlack(num black) {
+    assert(black != null && black >= 0 && black <= 100);
+
+    return CmykColor(cyan, magenta, yellow, black, alpha);
+  }
+
+  /// Returns this [CmykColor] modified with the provided [alpha] value.
+  @override
+  CmykColor withAlpha(num alpha) {
+    assert(alpha != null && alpha >= 0 && alpha <= 1);
+
+    return CmykColor(cyan, magenta, yellow, black, alpha);
+  }
 
   /// Parses a list for CMYK values and returns a [CmykColor].
   ///
-  /// [cmyk] must not be null and must have exactly 4 values.
+  /// [cmyk] must not be null and must have exactly `4` or `5` values.
   ///
   /// Each color value must be `>= 0 && <= 100`.
   static CmykColor fromList(List<num> cmyk) {
-    assert(cmyk != null && cmyk.length == 4);
+    assert(cmyk != null && (cmyk.length == 4 || cmyk.length == 5));
     assert(cmyk[0] != null && cmyk[0] >= 0 && cmyk[0] <= 100);
     assert(cmyk[1] != null && cmyk[1] >= 0 && cmyk[1] <= 100);
     assert(cmyk[2] != null && cmyk[2] >= 0 && cmyk[2] <= 100);
     assert(cmyk[3] != null && cmyk[3] >= 0 && cmyk[3] <= 100);
+    if (cmyk.length == 5) {
+      assert(cmyk[4] != null && cmyk[4] >= 0 && cmyk[4] <= 1);
+    }
 
-    return CmykColor(cmyk[0], cmyk[1], cmyk[2], cmyk[3]);
+    final alpha = cmyk.length == 5 ? cmyk[4] : 1.0;
+
+    return CmykColor(cmyk[0], cmyk[1], cmyk[2], cmyk[3], alpha);
   }
 
   /// Returns [color] as a [CmykColor].
@@ -70,18 +113,22 @@ class CmykColor extends cm.CmykColor with ToColor {
 
   /// Returns a [CmykColor] from a list of [cmyk] values on a 0 to 1 scale.
   ///
-  /// [cmyk] must not be null and must have exactly 4 values.
+  /// [cmyk] must not be null and must have exactly `4` or `5` values.
   ///
   /// Each of the values must be `>= 0` and `<= 1`.
   static CmykColor extrapolate(List<double> cmyk) {
-    assert(cmyk != null && cmyk.length == 4);
+    assert(cmyk != null && (cmyk.length == 4 || cmyk.length == 5));
     assert(cmyk[0] != null && cmyk[0] >= 0 && cmyk[0] <= 1);
     assert(cmyk[1] != null && cmyk[1] >= 0 && cmyk[1] <= 1);
     assert(cmyk[2] != null && cmyk[2] >= 0 && cmyk[2] <= 1);
     assert(cmyk[3] != null && cmyk[3] >= 0 && cmyk[3] <= 1);
+    if (cmyk.length == 5) {
+      assert(cmyk[4] != null && cmyk[4] >= 0 && cmyk[4] <= 1);
+    }
 
-    final cmykValues = cmyk.map((cmykValue) => cmykValue * 100).toList();
+    final alpha = cmyk.length == 5 ? cmyk[4] : 1.0;
 
-    return CmykColor.fromList(cmykValues);
+    return CmykColor(
+        cmyk[0] * 100, cmyk[1] * 100, cmyk[2] * 100, cmyk[3] * 100, alpha);
   }
 }

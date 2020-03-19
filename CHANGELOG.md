@@ -1,3 +1,7 @@
+## [0.1.2] - March 18, 2020
+
+* Added support for [alpha] values and related methods to each of the [ColorModel]s.
+
 ## [0.1.1+1] - March 17, 2020
 
 * Updated the color_models package to version 0.2.2+3.

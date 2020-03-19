@@ -14,7 +14,7 @@ mixin ToColor on ColorModel {
   Color toColor() {
     final rgb = RgbColor.from(this);
 
-    return Color.fromRGBO(rgb.red, rgb.green, rgb.blue, 1.0);
+    return Color.fromRGBO(rgb.red, rgb.green, rgb.blue, rgb.alpha);
   }
 
   /// Converts `this` to the CMYK color space.
