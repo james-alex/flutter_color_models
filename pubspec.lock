@@ -46,9 +46,9 @@ packages:
   color_models:
     dependency: "direct main"
     description:
-      path: "..\\color_models"
-      relative: true
-    source: path
+      name: color_models
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "0.2.4"
   convert:
     dependency: transitive
