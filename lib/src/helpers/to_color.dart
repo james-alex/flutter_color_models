@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart' show Color;
 import 'package:color_models/color_models.dart' as cm;
-import '../../color_model.dart';
+import '../color_model.dart';
 
 mixin ToColor on ColorModel {
   @override
@@ -49,35 +49,59 @@ mixin ToColor on ColorModel {
   @override
   XyzColor toXyzColor() => XyzColor.from(this);
 
-  /// Copies a [ColorModel] from this plugin's library and
-  /// returns it as a [ColorModel] from color_models' library.
+  /// Casts [ColorModel]s to and from this package's models
+  /// and the color_model package's models.
   static ColorModel cast(ColorModel color) {
     assert(color != null);
 
     switch (color.runtimeType) {
       case CmykColor:
-        color = cm.CmykColor.fromList(color.toList());
+        color = cm.CmykColor.fromList(color.toListWithAlpha());
         break;
       case HsiColor:
-        color = cm.HsiColor.fromList(color.toList());
+        color = cm.HsiColor.fromList(color.toListWithAlpha());
         break;
       case HslColor:
-        color = cm.HslColor.fromList(color.toList());
+        color = cm.HslColor.fromList(color.toListWithAlpha());
         break;
       case HspColor:
-        color = cm.HspColor.fromList(color.toList());
+        color = cm.HspColor.fromList(color.toListWithAlpha());
         break;
       case HsvColor:
-        color = cm.HsvColor.fromList(color.toList());
+        color = cm.HsvColor.fromList(color.toListWithAlpha());
         break;
       case LabColor:
-        color = cm.LabColor.fromList(color.toList());
+        color = cm.LabColor.fromList(color.toListWithAlpha());
         break;
       case RgbColor:
-        color = cm.RgbColor.fromList(color.toList());
+        color = cm.RgbColor.fromList(color.toListWithAlpha());
         break;
       case XyzColor:
-        color = cm.XyzColor.fromList(color.toList());
+        color = cm.XyzColor.fromList(color.toListWithAlpha());
+        break;
+      case cm.CmykColor:
+        color = CmykColor.fromList(color.toListWithAlpha());
+        break;
+      case cm.HsiColor:
+        color = HsiColor.fromList(color.toListWithAlpha());
+        break;
+      case cm.HslColor:
+        color = HslColor.fromList(color.toListWithAlpha());
+        break;
+      case cm.HspColor:
+        color = HspColor.fromList(color.toListWithAlpha());
+        break;
+      case cm.HsvColor:
+        color = HsvColor.fromList(color.toListWithAlpha());
+        break;
+      case cm.LabColor:
+        color = LabColor.fromList(color.toListWithAlpha());
+        break;
+      case cm.RgbColor:
+        color = RgbColor.fromList(color.toListWithAlpha());
+        break;
+      case cm.XyzColor:
+        color = XyzColor.fromList(color.toListWithAlpha());
         break;
     }
 

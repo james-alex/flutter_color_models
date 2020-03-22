@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart' show Color;
 import 'package:color_models/color_models.dart' as cm;
 import '../color_model.dart';
-import './helpers/to_color.dart';
+import '../helpers/to_color.dart';
 
 /// A color in the HSV (HSB) color space.
 ///
@@ -23,6 +23,35 @@ class HsvColor extends cm.HsvColor with ToColor {
         assert(value != null && value >= 0 && value <= 100),
         assert(alpha != null && alpha >= 0 && alpha <= 1),
         super(hue, saturation, value, alpha);
+
+  @override
+  HsvColor get inverted => ToColor.cast(ToColor.cast(this).inverted);
+
+  @override
+  HsvColor get opposite => rotateHue(180);
+
+  @override
+  HsvColor rotateHue(num amount) {
+    assert(amount != null);
+
+    final hslColor = toHslColor();
+
+    return withHue((hslColor.hue + amount) % 360);
+  }
+
+  @override
+  HsvColor warmer(num amount) {
+    assert(amount != null && amount > 0);
+
+    return ToColor.cast(ToColor.cast(this).warmer(amount));
+  }
+
+  @override
+  HsvColor cooler(num amount) {
+    assert(amount != null && amount > 0);
+
+    return ToColor.cast(ToColor.cast(this).cooler(amount));
+  }
 
   @override
   HsvColor withHue(num hue) {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart' show Color;
 import 'package:color_models/color_models.dart' as cm;
 import '../color_model.dart';
-import './helpers/to_color.dart';
+import '../helpers/to_color.dart';
 
 /// A color in the HSP color space.
 ///
@@ -28,6 +28,35 @@ class HspColor extends cm.HspColor with ToColor {
             perceivedBrightness <= 100),
         assert(alpha != null && alpha >= 0 && alpha <= 1),
         super(hue, saturation, perceivedBrightness, alpha);
+
+  @override
+  HspColor get inverted => ToColor.cast(ToColor.cast(this).inverted);
+
+  @override
+  HspColor get opposite => rotateHue(180);
+
+  @override
+  HspColor rotateHue(num amount) {
+    assert(amount != null);
+
+    final hslColor = toHslColor();
+
+    return withHue((hslColor.hue + amount) % 360);
+  }
+
+  @override
+  HspColor warmer(num amount) {
+    assert(amount != null && amount > 0);
+
+    return ToColor.cast(ToColor.cast(this).warmer(amount));
+  }
+
+  @override
+  HspColor cooler(num amount) {
+    assert(amount != null && amount > 0);
+
+    return ToColor.cast(ToColor.cast(this).cooler(amount));
+  }
 
   @override
   HspColor withHue(num hue) {

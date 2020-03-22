@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart' show Color;
 import 'package:color_models/color_models.dart' as cm;
 import '../color_model.dart';
-import './helpers/to_color.dart';
+import '../helpers/to_color.dart';
 
 /// A color in the sRGB color space.
 ///
@@ -26,6 +26,35 @@ class RgbColor extends cm.RgbColor with ToColor {
         assert(blue != null && blue >= 0 && green <= 255),
         assert(alpha != null && alpha >= 0 && alpha <= 1),
         super(red, green, blue, alpha);
+
+  @override
+  RgbColor get inverted => ToColor.cast(ToColor.cast(this).inverted);
+
+  @override
+  RgbColor get opposite => rotateHue(180);
+
+  @override
+  RgbColor rotateHue(num amount) {
+    assert(amount != null);
+
+    final hslColor = toHslColor();
+
+    return hslColor.withHue((hslColor.hue + amount) % 360).toRgbColor();
+  }
+
+  @override
+  RgbColor warmer(num amount) {
+    assert(amount != null && amount > 0);
+
+    return ToColor.cast(ToColor.cast(this).warmer(amount));
+  }
+
+  @override
+  RgbColor cooler(num amount) {
+    assert(amount != null && amount > 0);
+
+    return ToColor.cast(ToColor.cast(this).cooler(amount));
+  }
 
   @override
   RgbColor withRed(num red) {
@@ -53,6 +82,16 @@ class RgbColor extends cm.RgbColor with ToColor {
     assert(alpha != null && alpha >= 0 && alpha <= 1);
 
     return RgbColor(red, green, blue, alpha);
+  }
+
+  /// Returns this [RgbColor] modified with the provided [hue] value.
+  @override
+  RgbColor withHue(num hue) {
+    assert(hue != null && hue >= 0 && hue <= 360);
+
+    final hslColor = toHslColor();
+
+    return hslColor.withHue((hslColor.hue + hue) % 360).toRgbColor();
   }
 
   /// Constructs a [RgbColor] from [color].

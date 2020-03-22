@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart' show Color;
 import 'package:color_models/color_models.dart' as cm;
 import '../color_model.dart';
-import './helpers/to_color.dart';
+import '../helpers/to_color.dart';
 
 /// A color in the CIEXYZ color space.
 class XyzColor extends cm.XyzColor with ToColor {
@@ -24,6 +24,35 @@ class XyzColor extends cm.XyzColor with ToColor {
         assert(z != null && z >= 0),
         assert(alpha != null && alpha >= 0 && alpha <= 1),
         super(x, y, z, alpha);
+
+  @override
+  XyzColor get inverted => ToColor.cast(ToColor.cast(this).inverted);
+
+  @override
+  XyzColor get opposite => rotateHue(180);
+
+  @override
+  XyzColor rotateHue(num amount) {
+    assert(amount != null);
+
+    final hslColor = toHslColor();
+
+    return hslColor.withHue((hslColor.hue + amount) % 360).toXyzColor();
+  }
+
+  @override
+  XyzColor warmer(num amount) {
+    assert(amount != null && amount > 0);
+
+    return ToColor.cast(ToColor.cast(this).warmer(amount));
+  }
+
+  @override
+  XyzColor cooler(num amount) {
+    assert(amount != null && amount > 0);
+
+    return ToColor.cast(ToColor.cast(this).cooler(amount));
+  }
 
   @override
   XyzColor withX(num x) {
@@ -51,6 +80,16 @@ class XyzColor extends cm.XyzColor with ToColor {
     assert(alpha != null && alpha >= 0 && alpha <= 1);
 
     return XyzColor(x, y, z, alpha);
+  }
+
+  /// Returns this [XyzColor] modified with the provided [hue] value.
+  @override
+  XyzColor withHue(num hue) {
+    assert(hue != null && hue >= 0 && hue <= 360);
+
+    final hslColor = toHslColor();
+
+    return hslColor.withHue((hslColor.hue + hue) % 360).toXyzColor();
   }
 
   /// Constructs a [XyzColor] from [color].

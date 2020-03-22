@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart' show Color;
 import 'package:color_models/color_models.dart' as cm;
 import '../color_model.dart';
-import './helpers/to_color.dart';
+import '../helpers/to_color.dart';
 
 /// A color in the CIELAB color space.
 ///
@@ -24,6 +24,35 @@ class LabColor extends cm.LabColor with ToColor {
         assert(b != null && b >= -128 && b <= 127),
         assert(alpha != null && alpha >= 0 && alpha <= 1),
         super(lightness, a, b, alpha);
+
+  @override
+  LabColor get inverted => ToColor.cast(ToColor.cast(this).inverted);
+
+  @override
+  LabColor get opposite => rotateHue(180);
+
+  @override
+  LabColor rotateHue(num amount) {
+    assert(amount != null);
+
+    final hslColor = toHslColor();
+
+    return hslColor.withHue((hslColor.hue + amount) % 360).toLabColor();
+  }
+
+  @override
+  LabColor warmer(num amount) {
+    assert(amount != null && amount > 0);
+
+    return ToColor.cast(ToColor.cast(this).warmer(amount));
+  }
+
+  @override
+  LabColor cooler(num amount) {
+    assert(amount != null && amount > 0);
+
+    return ToColor.cast(ToColor.cast(this).cooler(amount));
+  }
 
   @override
   LabColor withLightness(num lightness) {
@@ -51,6 +80,16 @@ class LabColor extends cm.LabColor with ToColor {
     assert(alpha != null && alpha >= 0 && alpha <= 1);
 
     return LabColor(lightness, a, b, alpha);
+  }
+
+  /// Returns this [LabColor] modified with the provided [hue] value.
+  @override
+  LabColor withHue(num hue) {
+    assert(hue != null && hue >= 0 && hue <= 360);
+
+    final hslColor = toHslColor();
+
+    return hslColor.withHue((hslColor.hue + hue) % 360).toLabColor();
   }
 
   /// Constructs a [LabColor] from [color].
