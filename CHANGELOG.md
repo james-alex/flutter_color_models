@@ -1,3 +1,8 @@
+## [0.1.3] - March 21, 2020
+
+* Added the [inverted] and [opposite] getters, as well as the [warmer],
+[cooler], [rotateHue], and [withHue] methods to each [ColorModel].
+
 ## [0.1.2] - March 18, 2020
 
 * Added support for [alpha] values and related methods to each of the [ColorModel]s.
