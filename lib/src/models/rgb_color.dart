@@ -55,12 +55,23 @@ class RgbColor extends cm.RgbColor with ToColor {
     return RgbColor(red, green, blue, alpha);
   }
 
-  /// Parses a list for RGB values and returns a [RgbColor].
+  /// Constructs a [RgbColor] from [color].
+  factory RgbColor.from(ColorModel color) {
+    assert(color != null);
+
+    color = ToColor.cast(color);
+
+    final rgb = color.toRgbColor();
+
+    return RgbColor(rgb.red, rgb.green, rgb.blue);
+  }
+
+  /// Constructs a [RgbColor] from a list of [rgb] values.
   ///
   /// [rgb] must not be null and must have exactly `3` or `4` values.
   ///
   /// Each color value must be `>= 0 && <= 255`.
-  static RgbColor fromList(List<num> rgb) {
+  factory RgbColor.fromList(List<num> rgb) {
     assert(rgb != null && (rgb.length == 3 || rgb.length == 4));
     assert(rgb[0] != null && rgb[0] >= 0 && rgb[0] <= 255);
     assert(rgb[1] != null && rgb[1] >= 0 && rgb[1] <= 255);
@@ -74,29 +85,18 @@ class RgbColor extends cm.RgbColor with ToColor {
     return RgbColor(rgb[0], rgb[1], rgb[2], alpha);
   }
 
-  /// Returns [color] as a [RgbColor].
-  static RgbColor fromColor(Color color) {
+  /// Constructs a [RgbColor] from [color].
+  factory RgbColor.fromColor(Color color) {
     assert(color != null);
 
     return RgbColor(color.red, color.green, color.blue);
   }
 
-  /// Returns a [color] in another color space as a RGB color.
-  static RgbColor from(ColorModel color) {
-    assert(color != null);
-
-    color = ToColor.cast(color);
-
-    final rgb = color.toRgbColor();
-
-    return RgbColor(rgb.red, rgb.green, rgb.blue);
-  }
-
-  /// Returns a [hex] color as a RGB color.
+  /// Constructs a [RgbColor] from a [hex] color.
   ///
   /// [hex] is case-insensitive and must be `3` or `6` characters
   /// in length, excluding an optional leading `#`.
-  static RgbColor fromHex(String hex) {
+  factory RgbColor.fromHex(String hex) {
     assert(hex != null);
 
     final rgb = cm.RgbColor.fromHex(hex);
@@ -104,12 +104,12 @@ class RgbColor extends cm.RgbColor with ToColor {
     return RgbColor(rgb.red, rgb.green, rgb.blue);
   }
 
-  /// Returns a [RgbColor] from a list of [rgb] values on a 0 to 1 scale.
+  /// Constructs a [RgbColor] from a list of [rgb] values on a `0` to `1` scale.
   ///
   /// [rgb] must not be null and must have exactly `3` or `4` values.
   ///
   /// Each of the values must be `>= 0` and `<= 1`.
-  static RgbColor extrapolate(List<double> rgb) {
+  factory RgbColor.extrapolate(List<double> rgb) {
     assert(rgb != null && (rgb.length == 3 || rgb.length == 4));
     assert(rgb[0] != null && rgb[0] >= 0 && rgb[0] <= 1);
     assert(rgb[1] != null && rgb[1] >= 0 && rgb[1] <= 1);

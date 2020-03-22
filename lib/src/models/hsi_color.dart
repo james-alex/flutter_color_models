@@ -52,14 +52,25 @@ class HsiColor extends cm.HsiColor with ToColor {
     return HsiColor(hue, saturation, intensity, alpha);
   }
 
-  /// Parses a list for HSI values and returns a [HsiColor].
+  /// Constructs a [HsiColor] from [color].
+  factory HsiColor.from(ColorModel color) {
+    assert(color != null);
+
+    color = ToColor.cast(color);
+
+    final hsi = cm.ColorConverter.toHsiColor(color);
+
+    return HsiColor(hsi.hue, hsi.saturation, hsi.intensity);
+  }
+
+  /// Constructs a [HsiColor] from a list of [hsi] values.
   ///
   /// [hsi] must not be null and must have exactly `3` or `4` values.
   ///
   /// The hue must be `>= 0` and `<= 360`.
   ///
   /// The saturation and intensity must both be `>= 0` and `<= 100`.
-  static HsiColor fromList(List<num> hsi) {
+  factory HsiColor.fromList(List<num> hsi) {
     assert(hsi != null && (hsi.length == 3 || hsi.length == 4));
     assert(hsi[0] != null && hsi[0] >= 0 && hsi[0] <= 360);
     assert(hsi[1] != null && hsi[1] >= 0 && hsi[1] <= 100);
@@ -73,29 +84,18 @@ class HsiColor extends cm.HsiColor with ToColor {
     return HsiColor(hsi[0], hsi[1], hsi[2], alpha);
   }
 
-  /// Returns [color] as a [HsiColor].
-  static HsiColor fromColor(Color color) {
+  /// Constructs a [HsiColor] from [color].
+  factory HsiColor.fromColor(Color color) {
     assert(color != null);
 
     return RgbColor.fromColor(color).toHsiColor();
   }
 
-  /// Returns a [color] in another color space as a HSI color.
-  static HsiColor from(ColorModel color) {
-    assert(color != null);
-
-    color = ToColor.cast(color);
-
-    final hsi = cm.ColorConverter.toHsiColor(color);
-
-    return HsiColor(hsi.hue, hsi.saturation, hsi.intensity);
-  }
-
-  /// Returns a [hex] color as a HSI color.
+  /// Constructs a [HsiColor] from a [hex] color.
   ///
   /// [hex] is case-insensitive and must be `3` or `6` characters
   /// in length, excluding an optional leading `#`.
-  static HsiColor fromHex(String hex) {
+  factory HsiColor.fromHex(String hex) {
     assert(hex != null);
 
     final hsi = cm.HsiColor.fromHex(hex);
@@ -103,12 +103,12 @@ class HsiColor extends cm.HsiColor with ToColor {
     return HsiColor(hsi.hue, hsi.saturation, hsi.intensity);
   }
 
-  /// Returns a [HsiColor] from a list of [hsi] values on a 0 to 1 scale.
+  /// Constructs a [HsiColor] from a list of [hsi] values on a `0` to `1` scale.
   ///
   /// [hsi] must not be null and must have exactly `3` or `4` values.
   ///
   /// Each of the values must be `>= 0` and `<= 1`.
-  static HsiColor extrapolate(List<double> hsi) {
+  factory HsiColor.extrapolate(List<double> hsi) {
     assert(hsi != null && (hsi.length == 3 || hsi.length == 4));
     assert(hsi[0] != null && hsi[0] >= 0 && hsi[0] <= 1);
     assert(hsi[1] != null && hsi[1] >= 0 && hsi[1] <= 1);

@@ -52,14 +52,25 @@ class HsvColor extends cm.HsvColor with ToColor {
     return HsvColor(hue, saturation, value, alpha);
   }
 
-  /// Parses a list for HSV values and returns a [HsvColor].
+  /// Constructs a [HsvColor] from [color].
+  factory HsvColor.from(ColorModel color) {
+    assert(color != null);
+
+    color = ToColor.cast(color);
+
+    final hsv = cm.ColorConverter.toHsvColor(color);
+
+    return HsvColor(hsv.hue, hsv.saturation, hsv.value);
+  }
+
+  /// Constructs a [HsvColor] from a list of [hsv] values.
   ///
   /// [hsv] must not be null and must have exactly `3` or `4` values.
   ///
   /// The hue must be `>= 0` and `<= 360`.
   ///
   /// The saturation and value must both be `>= 0` and `<= 100`.
-  static HsvColor fromList(List<num> hsv) {
+  factory HsvColor.fromList(List<num> hsv) {
     assert(hsv != null && (hsv.length == 3 || hsv.length == 4));
     assert(hsv[0] != null && hsv[0] >= 0 && hsv[0] <= 360);
     assert(hsv[1] != null && hsv[1] >= 0 && hsv[1] <= 100);
@@ -73,29 +84,18 @@ class HsvColor extends cm.HsvColor with ToColor {
     return HsvColor(hsv[0], hsv[1], hsv[2], alpha);
   }
 
-  /// Returns [color] as a [HslColor].
-  static HsvColor fromColor(Color color) {
+  /// Constructs a [HslColor] from [color].
+  factory HsvColor.fromColor(Color color) {
     assert(color != null);
 
     return RgbColor.fromColor(color).toHsvColor();
   }
 
-  /// Returns a [color] in another color space as a HSV color.
-  static HsvColor from(ColorModel color) {
-    assert(color != null);
-
-    color = ToColor.cast(color);
-
-    final hsv = cm.ColorConverter.toHsvColor(color);
-
-    return HsvColor(hsv.hue, hsv.saturation, hsv.value);
-  }
-
-  /// Returns a [hex] color as a HSV color.
+  /// Constructs a [HsvColor] from a [hex] color.
   ///
   /// [hex] is case-insensitive and must be `3` or `6` characters
   /// in length, excluding an optional leading `#`.
-  static HsvColor fromHex(String hex) {
+  factory HsvColor.fromHex(String hex) {
     assert(hex != null);
 
     final hsv = cm.HsvColor.fromHex(hex);
@@ -103,12 +103,12 @@ class HsvColor extends cm.HsvColor with ToColor {
     return HsvColor(hsv.hue, hsv.saturation, hsv.value);
   }
 
-  /// Returns a [HsvColor] from a list of [hsv] values on a 0 to 1 scale.
+  /// Constructs a [HsvColor] from a list of [hsv] values on a `0` to `1` scale.
   ///
   /// [hsv] must not be null and must have exactly `3` or `4` values.
   ///
   /// Each of the values must be `>= 0` and `<= 1`.
-  static HsvColor extrapolate(List<double> hsv) {
+  factory HsvColor.extrapolate(List<double> hsv) {
     assert(hsv != null && (hsv.length == 3 || hsv.length == 4));
     assert(hsv[0] != null && hsv[0] >= 0 && hsv[0] <= 1);
     assert(hsv[1] != null && hsv[1] >= 0 && hsv[1] <= 1);

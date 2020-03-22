@@ -61,12 +61,23 @@ class CmykColor extends cm.CmykColor with ToColor {
     return CmykColor(cyan, magenta, yellow, black, alpha);
   }
 
-  /// Parses a list for CMYK values and returns a [CmykColor].
+  /// Constructs a [CmykColor] from [color].
+  factory CmykColor.from(ColorModel color) {
+    assert(color != null);
+
+    color = ToColor.cast(color);
+
+    final cmyk = cm.ColorConverter.toCmykColor(color);
+
+    return CmykColor(cmyk.cyan, cmyk.magenta, cmyk.yellow, cmyk.black);
+  }
+
+  /// Constructs a [CmykColor] from a list of [cmyk] values.
   ///
   /// [cmyk] must not be null and must have exactly `4` or `5` values.
   ///
   /// Each color value must be `>= 0 && <= 100`.
-  static CmykColor fromList(List<num> cmyk) {
+  factory CmykColor.fromList(List<num> cmyk) {
     assert(cmyk != null && (cmyk.length == 4 || cmyk.length == 5));
     assert(cmyk[0] != null && cmyk[0] >= 0 && cmyk[0] <= 100);
     assert(cmyk[1] != null && cmyk[1] >= 0 && cmyk[1] <= 100);
@@ -81,29 +92,18 @@ class CmykColor extends cm.CmykColor with ToColor {
     return CmykColor(cmyk[0], cmyk[1], cmyk[2], cmyk[3], alpha);
   }
 
-  /// Returns [color] as a [CmykColor].
-  static CmykColor fromColor(Color color) {
+  /// Constructs a [CmykColor] from [color].
+  factory CmykColor.fromColor(Color color) {
     assert(color != null);
 
     return RgbColor.fromColor(color).toCmykColor();
   }
 
-  /// Returns a [color] in another color space as a CMYK color.
-  static CmykColor from(ColorModel color) {
-    assert(color != null);
-
-    color = ToColor.cast(color);
-
-    final cmyk = cm.ColorConverter.toCmykColor(color);
-
-    return CmykColor(cmyk.cyan, cmyk.magenta, cmyk.yellow, cmyk.black);
-  }
-
-  /// Returns a [hex] color as a CMYK color.
+  /// Constructs a [CmykColor] from a [hex] color.
   ///
   /// [hex] is case-insensitive and must be `3` or `6` characters
   /// in length, excluding an optional leading `#`.
-  static CmykColor fromHex(String hex) {
+  factory CmykColor.fromHex(String hex) {
     assert(hex != null);
 
     final cmyk = cm.CmykColor.fromHex(hex);
@@ -111,12 +111,13 @@ class CmykColor extends cm.CmykColor with ToColor {
     return CmykColor(cmyk.cyan, cmyk.magenta, cmyk.yellow, cmyk.black);
   }
 
-  /// Returns a [CmykColor] from a list of [cmyk] values on a 0 to 1 scale.
+  /// Constructs a [CmykColor] from a list of [cmyk] values
+  /// on a `0` to `1` scale.
   ///
   /// [cmyk] must not be null and must have exactly `4` or `5` values.
   ///
   /// Each of the values must be `>= 0` and `<= 1`.
-  static CmykColor extrapolate(List<double> cmyk) {
+  factory CmykColor.extrapolate(List<double> cmyk) {
     assert(cmyk != null && (cmyk.length == 4 || cmyk.length == 5));
     assert(cmyk[0] != null && cmyk[0] >= 0 && cmyk[0] <= 1);
     assert(cmyk[1] != null && cmyk[1] >= 0 && cmyk[1] <= 1);

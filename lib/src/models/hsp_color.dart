@@ -59,14 +59,25 @@ class HspColor extends cm.HspColor with ToColor {
     return HspColor(hue, saturation, perceivedBrightness, alpha);
   }
 
-  /// Parses a list for HSP values and returns a [HspColor].
+  /// Constructs a [HspColor] from [color].
+  factory HspColor.from(ColorModel color) {
+    assert(color != null);
+
+    color = ToColor.cast(color);
+
+    final hsp = cm.ColorConverter.toHspColor(color);
+
+    return HspColor(hsp.hue, hsp.saturation, hsp.perceivedBrightness);
+  }
+
+  /// Constructs a [HspColor] from a list of [hsp] values.
   ///
   /// [hsp] must not be null and must have exactly `3` or `4` values.
   ///
   /// The hue must be `>= 0` and `<= 360`.
   ///
   /// The saturation and perceived brightness must both be `>= 0` and `<= 100`.
-  static HspColor fromList(List<num> hsp) {
+  factory HspColor.fromList(List<num> hsp) {
     assert(hsp != null && (hsp.length == 3 || hsp.length == 4));
     assert(hsp[0] != null && hsp[0] >= 0 && hsp[0] <= 360);
     assert(hsp[1] != null && hsp[1] >= 0 && hsp[1] <= 100);
@@ -80,29 +91,18 @@ class HspColor extends cm.HspColor with ToColor {
     return HspColor(hsp[0], hsp[1], hsp[2], alpha);
   }
 
-  /// Returns [color] as a [HspColor].
-  static HspColor fromColor(Color color) {
+  /// Constructs a [HspColor] from [color].
+  factory HspColor.fromColor(Color color) {
     assert(color != null);
 
     return RgbColor.fromColor(color).toHspColor();
   }
 
-  /// Returns a [color] in another color space as a HSP color.
-  static HspColor from(ColorModel color) {
-    assert(color != null);
-
-    color = ToColor.cast(color);
-
-    final hsp = cm.ColorConverter.toHspColor(color);
-
-    return HspColor(hsp.hue, hsp.saturation, hsp.perceivedBrightness);
-  }
-
-  /// Returns a [hex] color as a HSP color.
+  /// Constructs a [HspColor] from a [hex] color.
   ///
   /// [hex] is case-insensitive and must be `3` or `6` characters
   /// in length, excluding an optional leading `#`.
-  static HspColor fromHex(String hex) {
+  factory HspColor.fromHex(String hex) {
     assert(hex != null);
 
     final hsp = cm.HspColor.fromHex(hex);
@@ -110,12 +110,12 @@ class HspColor extends cm.HspColor with ToColor {
     return HspColor(hsp.hue, hsp.saturation, hsp.perceivedBrightness);
   }
 
-  /// Returns a [HspColor] from a list of [hsp] values on a 0 to 1 scale.
+  /// Constructs a [HspColor] from a list of [hsp] values on a `0` to `1` scale.
   ///
   /// [hsp] must not be null and must have exactly `3` or `4` values.
   ///
   /// Each of the values must be `>= 0` and `<= 1`.
-  static HspColor extrapolate(List<double> hsp) {
+  factory HspColor.extrapolate(List<double> hsp) {
     assert(hsp != null && (hsp.length == 3 || hsp.length == 4));
     assert(hsp[0] != null && hsp[0] >= 0 && hsp[0] <= 1);
     assert(hsp[1] != null && hsp[1] >= 0 && hsp[1] <= 1);

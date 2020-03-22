@@ -53,7 +53,18 @@ class XyzColor extends cm.XyzColor with ToColor {
     return XyzColor(x, y, z, alpha);
   }
 
-  /// Parses a list for XYZ values and returns a [XyzColor].
+  /// Constructs a [XyzColor] from [color].
+  factory XyzColor.from(ColorModel color) {
+    assert(color != null);
+
+    color = ToColor.cast(color);
+
+    final xyz = cm.ColorConverter.toXyzColor(color);
+
+    return XyzColor(xyz.x, xyz.y, xyz.z);
+  }
+
+  /// Constructs a [XyzColor] from a list of [xyz] values.
   ///
   /// [xyz] must not be null and must have exactly `3` or `4` values.
   ///
@@ -64,7 +75,7 @@ class XyzColor extends cm.XyzColor with ToColor {
   /// [z] must be `>= 0` and `<= 109`.
   ///
   /// None of the color values may be null.
-  static XyzColor fromList(List<num> xyz) {
+  factory XyzColor.fromList(List<num> xyz) {
     assert(xyz != null && (xyz.length == 3 || xyz.length == 4));
     assert(xyz[0] != null && xyz[0] >= 0 && xyz[0] <= 100);
     assert(xyz[1] != null && xyz[1] >= 0 && xyz[1] <= 100);
@@ -78,29 +89,18 @@ class XyzColor extends cm.XyzColor with ToColor {
     return XyzColor(xyz[0], xyz[1], xyz[2], alpha);
   }
 
-  /// Returns [color] as a [XyzColor].
-  static XyzColor fromColor(Color color) {
+  /// Constructs a [XyzColor] from [color].
+  factory XyzColor.fromColor(Color color) {
     assert(color != null);
 
     return RgbColor.fromColor(color).toXyzColor();
   }
 
-  /// Returns a [color] in another color space as a XYZ color.
-  static XyzColor from(ColorModel color) {
-    assert(color != null);
-
-    color = ToColor.cast(color);
-
-    final xyz = cm.ColorConverter.toXyzColor(color);
-
-    return XyzColor(xyz.x, xyz.y, xyz.z);
-  }
-
-  /// Returns a [hex] color as a CIEXYZ color.
+  /// Constructs a [XyzColor] from a [hex] color.
   ///
   /// [hex] is case-insensitive and must be `3` or `6` characters
   /// in length, excluding an optional leading `#`.
-  static XyzColor fromHex(String hex) {
+  factory XyzColor.fromHex(String hex) {
     assert(hex != null);
 
     final xyz = cm.XyzColor.fromHex(hex);
@@ -108,12 +108,12 @@ class XyzColor extends cm.XyzColor with ToColor {
     return XyzColor(xyz.x, xyz.y, xyz.z);
   }
 
-  /// Returns a [XyzColor] from a list of [xyz] values on a 0 to 1 scale.
+  /// Constructs a [XyzColor] from a list of [xyz] values on a `0` to `1` scale.
   ///
   /// [xyz] must not be null and must have exactly `3` or `4` values.
   ///
   /// Each of the values must be `>= 0` and `<= 1`.
-  static XyzColor extrapolate(List<double> xyz) {
+  factory XyzColor.extrapolate(List<double> xyz) {
     assert(xyz != null && (xyz.length == 3 || xyz.length == 4));
     assert(xyz[0] != null && xyz[0] >= 0 && xyz[0] <= 1);
     assert(xyz[1] != null && xyz[1] >= 0 && xyz[1] <= 1);
