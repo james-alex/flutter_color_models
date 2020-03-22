@@ -1,3 +1,7 @@
+## [0.1.3+1] - March 22, 2020
+
+* Added the [hue] getter to [ColorModel].
+
 ## [0.1.3] - March 21, 2020
 
 * Added the [inverted] and [opposite] getters, as well as the [warmer],
