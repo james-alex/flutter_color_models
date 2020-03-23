@@ -40,17 +40,19 @@ class HsvColor extends cm.HsvColor with ToColor {
   }
 
   @override
-  HsvColor warmer(num amount) {
+  HsvColor warmer(num amount, {bool relative = true}) {
     assert(amount != null && amount > 0);
+    assert(relative != null);
 
-    return ToColor.cast(ToColor.cast(this).warmer(amount));
+    return ToColor.cast(ToColor.cast(this).warmer(amount, relative: relative));
   }
 
   @override
-  HsvColor cooler(num amount) {
+  HsvColor cooler(num amount, {bool relative = true}) {
     assert(amount != null && amount > 0);
+    assert(relative != null);
 
-    return ToColor.cast(ToColor.cast(this).cooler(amount));
+    return ToColor.cast(ToColor.cast(this).cooler(amount, relative: relative));
   }
 
   @override

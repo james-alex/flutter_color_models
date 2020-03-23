@@ -40,17 +40,19 @@ class HsiColor extends cm.HsiColor with ToColor {
   }
 
   @override
-  HsiColor warmer(num amount) {
+  HsiColor warmer(num amount, {bool relative = true}) {
     assert(amount != null && amount > 0);
+    assert(relative != null);
 
-    return ToColor.cast(ToColor.cast(this).warmer(amount));
+    return ToColor.cast(ToColor.cast(this).warmer(amount, relative: relative));
   }
 
   @override
-  HsiColor cooler(num amount) {
+  HsiColor cooler(num amount, {bool relative = true}) {
     assert(amount != null && amount > 0);
+    assert(relative != null);
 
-    return ToColor.cast(ToColor.cast(this).cooler(amount));
+    return ToColor.cast(ToColor.cast(this).cooler(amount, relative: relative));
   }
 
   @override

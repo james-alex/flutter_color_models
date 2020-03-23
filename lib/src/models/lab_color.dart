@@ -41,17 +41,19 @@ class LabColor extends cm.LabColor with ToColor {
   }
 
   @override
-  LabColor warmer(num amount) {
+  LabColor warmer(num amount, {bool relative = true}) {
     assert(amount != null && amount > 0);
+    assert(relative != null);
 
-    return ToColor.cast(ToColor.cast(this).warmer(amount));
+    return ToColor.cast(ToColor.cast(this).warmer(amount, relative: relative));
   }
 
   @override
-  LabColor cooler(num amount) {
+  LabColor cooler(num amount, {bool relative = true}) {
     assert(amount != null && amount > 0);
+    assert(relative != null);
 
-    return ToColor.cast(ToColor.cast(this).cooler(amount));
+    return ToColor.cast(ToColor.cast(this).cooler(amount, relative: relative));
   }
 
   @override

@@ -43,17 +43,19 @@ class RgbColor extends cm.RgbColor with ToColor {
   }
 
   @override
-  RgbColor warmer(num amount) {
+  RgbColor warmer(num amount, {bool relative = true}) {
     assert(amount != null && amount > 0);
+    assert(relative != null);
 
-    return ToColor.cast(ToColor.cast(this).warmer(amount));
+    return ToColor.cast(ToColor.cast(this).warmer(amount, relative: relative));
   }
 
   @override
-  RgbColor cooler(num amount) {
+  RgbColor cooler(num amount, {bool relative = true}) {
     assert(amount != null && amount > 0);
+    assert(relative != null);
 
-    return ToColor.cast(ToColor.cast(this).cooler(amount));
+    return ToColor.cast(ToColor.cast(this).cooler(amount, relative: relative));
   }
 
   @override

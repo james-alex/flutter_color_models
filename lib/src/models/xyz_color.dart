@@ -41,17 +41,19 @@ class XyzColor extends cm.XyzColor with ToColor {
   }
 
   @override
-  XyzColor warmer(num amount) {
+  XyzColor warmer(num amount, {bool relative = true}) {
     assert(amount != null && amount > 0);
+    assert(relative != null);
 
-    return ToColor.cast(ToColor.cast(this).warmer(amount));
+    return ToColor.cast(ToColor.cast(this).warmer(amount, relative: relative));
   }
 
   @override
-  XyzColor cooler(num amount) {
+  XyzColor cooler(num amount, {bool relative = true}) {
     assert(amount != null && amount > 0);
+    assert(relative != null);
 
-    return ToColor.cast(ToColor.cast(this).cooler(amount));
+    return ToColor.cast(ToColor.cast(this).cooler(amount, relative: relative));
   }
 
   @override
