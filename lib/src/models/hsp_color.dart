@@ -159,4 +159,53 @@ class HspColor extends cm.HspColor with ToColor {
 
     return HspColor(hsp[0] * 360, hsp[1] * 100, hsp[2] * 100, alpha);
   }
+
+  /// Generates a [HspColor] at random.
+  ///
+  /// [minHue] and [maxHue] constrain the generated [hue] value. If
+  /// `minHue < maxHue`, the range will run in a clockwise direction
+  /// between the two, however if `minHue > maxHue`, the range will
+  /// run in a counter-clockwise direction. Both [minHue] and [maxHue]
+  /// must be `>= 0 && <= 360` and must not be `null`.
+  ///
+  /// [minSaturation] and [maxSaturation] constrain the generated [saturation]
+  /// value.
+  ///
+  /// [minPerceivedBrightness] and [maxPerceivedBrightness] constrain the
+  /// generated [perceivedBrightness] value.
+  ///
+  /// Min and max values, besides hues, must be `min <= max && max >= min`,
+  /// must be in the range of `>= 0 && <= 100`, and must not be `null`.
+  factory HspColor.random({
+    num minHue = 0,
+    num maxHue = 360,
+    num minSaturation = 0,
+    num maxSaturation = 100,
+    num minPerceivedBrightness = 0,
+    num maxPerceivedBrightness = 100,
+  }) {
+    assert(minHue != null && minHue >= 0 && minHue <= 360);
+    assert(maxHue != null && maxHue >= 0 && maxHue <= 360);
+    assert(minSaturation != null &&
+        minSaturation >= 0 &&
+        minSaturation <= maxSaturation);
+    assert(maxSaturation != null &&
+        maxSaturation >= minSaturation &&
+        maxSaturation <= 100);
+    assert(minPerceivedBrightness != null &&
+        minPerceivedBrightness >= 0 &&
+        minPerceivedBrightness <= maxPerceivedBrightness);
+    assert(maxPerceivedBrightness != null &&
+        maxPerceivedBrightness >= minPerceivedBrightness &&
+        maxPerceivedBrightness <= 100);
+
+    return ToColor.cast(cm.HspColor.random(
+      minHue: minHue,
+      maxHue: maxHue,
+      minSaturation: minSaturation,
+      maxSaturation: maxSaturation,
+      minPerceivedBrightness: minPerceivedBrightness,
+      maxPerceivedBrightness: maxPerceivedBrightness,
+    ));
+  }
 }
