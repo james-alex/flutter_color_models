@@ -6,7 +6,10 @@
 A wrapper for the color_models plugin with added
 support for Flutter's [Color] class.
 
-See: https://pub.dev/packages/color_models
+__For use without Flutter, see:__ https://pub.dev/packages/color_models
+
+Check out [flutter_palette](https://pub.dev/packages/flutter_palette),
+a package for creating, generating, and modifying color palettes.
 
 ## Usage
 
