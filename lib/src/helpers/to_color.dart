@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart' show Color;
 import 'package:color_models/color_models.dart' as cm;
 import '../color_model.dart';
+import './cast_to_color.dart' as ctc;
 
 mixin ToColor on ColorModel {
   @override
@@ -11,11 +12,7 @@ mixin ToColor on ColorModel {
   }
 
   /// Converts `this` to a [Color].
-  Color toColor() {
-    final rgb = RgbColor.from(this);
-
-    return Color.fromRGBO(rgb.red, rgb.green, rgb.blue, rgb.alpha);
-  }
+  Color toColor() => ctc.toColor(this);
 
   /// Converts `this` to the CMYK color space.
   @override

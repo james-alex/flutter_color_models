@@ -99,6 +99,14 @@ XyzColor xyzColor = XyzColor.fromColor(color);
 color = xyzColor.toColor();
 ```
 
+Due to the nature of this implementation, the base [ColorModel] lacks the
+[toColor] method. Instead, the global [toColor] method can be used.
+
+```dart
+// Cast a [ColorModel] to a [Color].
+var color = toColor(color);
+```
+
 ## Converting Colors Between Spaces
 
 Each color model has methods to convert itself

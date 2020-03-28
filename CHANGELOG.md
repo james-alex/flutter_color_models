@@ -1,3 +1,7 @@
+## [0.1.5+1] - March 27, 2020
+
+* Added the global [toColor] method.
+
 ## [0.1.5] - March 24, 2020
 
 * Added the random factory constructor to each [ColorModel].
