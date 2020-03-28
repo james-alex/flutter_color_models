@@ -14,7 +14,7 @@ class XyzColor extends cm.XyzColor with ToColor {
   /// left upwardly unbounded to allow to allow for conversions
   /// between the XYZ and LAB color spaces that fall outside of
   /// the sRGB color space's bounds.
-  XyzColor(
+  const XyzColor(
     num x,
     num y,
     num z, [
