@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart' show Color;
 import 'package:color_models/color_models.dart' as cm;
 import '../color_model.dart';
-import '../helpers/to_color.dart';
+import '../helpers/cast_color.dart';
 
 /// A color in the HSI color space.
 ///
 /// The HSI color space contains channels for [hue],
 /// [saturation], and [intensity].
-class HsiColor extends cm.HsiColor with ToColor {
+class HsiColor extends cm.HsiColor with CastColor {
   /// A color in the HSV (HSB) color space.
   ///
   /// [hue] must be `>= 0` and `<= 360`.
@@ -25,7 +25,7 @@ class HsiColor extends cm.HsiColor with ToColor {
         super(hue, saturation, intensity, alpha);
 
   @override
-  HsiColor get inverted => ToColor.cast(ToColor.cast(this).inverted);
+  HsiColor get inverted => CastColor.cast(CastColor.cast(this).inverted);
 
   @override
   HsiColor get opposite => rotateHue(180);
@@ -44,7 +44,7 @@ class HsiColor extends cm.HsiColor with ToColor {
     assert(amount != null && amount > 0);
     assert(relative != null);
 
-    return ToColor.cast(ToColor.cast(this).warmer(amount, relative: relative));
+    return CastColor.cast(CastColor.cast(this).warmer(amount, relative: relative));
   }
 
   @override
@@ -52,7 +52,7 @@ class HsiColor extends cm.HsiColor with ToColor {
     assert(amount != null && amount > 0);
     assert(relative != null);
 
-    return ToColor.cast(ToColor.cast(this).cooler(amount, relative: relative));
+    return CastColor.cast(CastColor.cast(this).cooler(amount, relative: relative));
   }
 
   @override
@@ -87,7 +87,7 @@ class HsiColor extends cm.HsiColor with ToColor {
   factory HsiColor.from(ColorModel color) {
     assert(color != null);
 
-    color = ToColor.cast(color);
+    color = CastColor.cast(color);
 
     final hsi = cm.ColorConverter.toHsiColor(color);
 
@@ -192,7 +192,7 @@ class HsiColor extends cm.HsiColor with ToColor {
         maxIntensity >= minIntensity &&
         maxIntensity <= 100);
 
-    return ToColor.cast(cm.HsiColor.random(
+    return CastColor.cast(cm.HsiColor.random(
       minHue: minHue,
       maxHue: maxHue,
       minSaturation: minSaturation,

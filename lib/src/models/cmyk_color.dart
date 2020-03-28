@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart' show Color;
 import 'package:color_models/color_models.dart' as cm;
 import '../color_model.dart';
-import '../helpers/to_color.dart';
+import '../helpers/cast_color.dart';
 
 /// A color in the CMYK color space.
 ///
 /// The CMYK color space contains channels for [cyan],
 /// [magenta], [yellow], and [black].
-class CmykColor extends cm.CmykColor with ToColor {
+class CmykColor extends cm.CmykColor with CastColor {
   /// A color in the CMYK color space.
   ///
   /// [cyan], [magenta], [yellow], and [black]
@@ -26,7 +26,7 @@ class CmykColor extends cm.CmykColor with ToColor {
         super(cyan, magenta, yellow, black, alpha);
 
   @override
-  CmykColor get inverted => ToColor.cast(ToColor.cast(this).inverted);
+  CmykColor get inverted => CastColor.cast(CastColor.cast(this).inverted);
 
   @override
   CmykColor get opposite => rotateHue(180);
@@ -45,7 +45,7 @@ class CmykColor extends cm.CmykColor with ToColor {
     assert(amount != null && amount > 0);
     assert(relative != null);
 
-    return ToColor.cast(ToColor.cast(this).warmer(amount, relative: relative));
+    return CastColor.cast(CastColor.cast(this).warmer(amount, relative: relative));
   }
 
   @override
@@ -53,7 +53,7 @@ class CmykColor extends cm.CmykColor with ToColor {
     assert(amount != null && amount > 0);
     assert(relative != null);
 
-    return ToColor.cast(ToColor.cast(this).cooler(amount, relative: relative));
+    return CastColor.cast(CastColor.cast(this).cooler(amount, relative: relative));
   }
 
   @override
@@ -105,7 +105,7 @@ class CmykColor extends cm.CmykColor with ToColor {
   factory CmykColor.from(ColorModel color) {
     assert(color != null);
 
-    color = ToColor.cast(color);
+    color = CastColor.cast(color);
 
     final cmyk = cm.ColorConverter.toCmykColor(color);
 
@@ -204,7 +204,7 @@ class CmykColor extends cm.CmykColor with ToColor {
     assert(minBlack != null && minBlack >= 0 && minBlack <= maxBlack);
     assert(maxBlack != null && maxBlack >= minBlack && maxBlack <= 100);
 
-    return ToColor.cast(cm.CmykColor.random(
+    return CastColor.cast(cm.CmykColor.random(
       minCyan: minCyan,
       maxCyan: maxCyan,
       minMagenta: minMagenta,

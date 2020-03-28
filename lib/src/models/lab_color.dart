@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart' show Color;
 import 'package:color_models/color_models.dart' as cm;
 import '../color_model.dart';
-import '../helpers/to_color.dart';
+import '../helpers/cast_color.dart';
 
 /// A color in the CIELAB color space.
 ///
 /// The CIELAB color space contains channels for [lightness],
 /// [a] (red and green opponent values), and [b] (blue and
 /// yellow opponent values.)
-class LabColor extends cm.LabColor with ToColor {
+class LabColor extends cm.LabColor with CastColor {
   /// A color in the CIELAB color space.
   ///
   /// [lightness] must be `>= 0` and `<= 100`.
@@ -26,7 +26,7 @@ class LabColor extends cm.LabColor with ToColor {
         super(lightness, a, b, alpha);
 
   @override
-  LabColor get inverted => ToColor.cast(ToColor.cast(this).inverted);
+  LabColor get inverted => CastColor.cast(CastColor.cast(this).inverted);
 
   @override
   LabColor get opposite => rotateHue(180);
@@ -45,7 +45,7 @@ class LabColor extends cm.LabColor with ToColor {
     assert(amount != null && amount > 0);
     assert(relative != null);
 
-    return ToColor.cast(ToColor.cast(this).warmer(amount, relative: relative));
+    return CastColor.cast(CastColor.cast(this).warmer(amount, relative: relative));
   }
 
   @override
@@ -53,7 +53,7 @@ class LabColor extends cm.LabColor with ToColor {
     assert(amount != null && amount > 0);
     assert(relative != null);
 
-    return ToColor.cast(ToColor.cast(this).cooler(amount, relative: relative));
+    return CastColor.cast(CastColor.cast(this).cooler(amount, relative: relative));
   }
 
   @override
@@ -98,7 +98,7 @@ class LabColor extends cm.LabColor with ToColor {
   factory LabColor.from(ColorModel color) {
     assert(color != null);
 
-    color = ToColor.cast(color);
+    color = CastColor.cast(color);
 
     final lab = cm.ColorConverter.toLabColor(color);
 
@@ -195,7 +195,7 @@ class LabColor extends cm.LabColor with ToColor {
     assert(minB != null && minB >= 0 && minB <= maxB);
     assert(maxB != null && maxB >= minB && maxB <= 100);
 
-    return ToColor.cast(cm.LabColor.random(
+    return CastColor.cast(cm.LabColor.random(
       minLightness: minLightness,
       maxLightness: maxLightness,
       minA: minA,

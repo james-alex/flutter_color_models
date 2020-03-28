@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart' show Color;
 import 'package:color_models/color_models.dart' as cm;
 import '../color_model.dart';
-import '../helpers/to_color.dart';
+import '../helpers/cast_color.dart';
 
 /// A color in the HSV (HSB) color space.
 ///
 /// The HSV color space contains channels for [hue],
 /// [saturation], and [value].
-class HsvColor extends cm.HsvColor with ToColor {
+class HsvColor extends cm.HsvColor with CastColor {
   /// A color in the HSV (HSB) color space.
   ///
   /// [hue] must be `>= 0` and `<= 360`.
@@ -25,7 +25,7 @@ class HsvColor extends cm.HsvColor with ToColor {
         super(hue, saturation, value, alpha);
 
   @override
-  HsvColor get inverted => ToColor.cast(ToColor.cast(this).inverted);
+  HsvColor get inverted => CastColor.cast(CastColor.cast(this).inverted);
 
   @override
   HsvColor get opposite => rotateHue(180);
@@ -44,7 +44,7 @@ class HsvColor extends cm.HsvColor with ToColor {
     assert(amount != null && amount > 0);
     assert(relative != null);
 
-    return ToColor.cast(ToColor.cast(this).warmer(amount, relative: relative));
+    return CastColor.cast(CastColor.cast(this).warmer(amount, relative: relative));
   }
 
   @override
@@ -52,7 +52,7 @@ class HsvColor extends cm.HsvColor with ToColor {
     assert(amount != null && amount > 0);
     assert(relative != null);
 
-    return ToColor.cast(ToColor.cast(this).cooler(amount, relative: relative));
+    return CastColor.cast(CastColor.cast(this).cooler(amount, relative: relative));
   }
 
   @override
@@ -87,7 +87,7 @@ class HsvColor extends cm.HsvColor with ToColor {
   factory HsvColor.from(ColorModel color) {
     assert(color != null);
 
-    color = ToColor.cast(color);
+    color = CastColor.cast(color);
 
     final hsv = cm.ColorConverter.toHsvColor(color);
 
@@ -187,7 +187,7 @@ class HsvColor extends cm.HsvColor with ToColor {
     assert(minValue != null && minValue >= 0 && minValue <= maxValue);
     assert(maxValue != null && maxValue >= minValue && maxValue <= 100);
 
-    return ToColor.cast(cm.HsvColor.random(
+    return CastColor.cast(cm.HsvColor.random(
       minHue: minHue,
       maxHue: maxHue,
       minSaturation: minSaturation,
