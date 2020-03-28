@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart' show Color;
 import 'package:color_models/color_models.dart' as cm;
 import '../color_model.dart';
-import '../helpers/cast_color.dart';
+import '../helpers/to_color.dart';
 
 /// A color in the HSP color space.
 ///
@@ -10,7 +10,7 @@ import '../helpers/cast_color.dart';
 ///
 /// The HSP color space was created in 2006 by Darel Rex Finley.
 /// Read about it here: http://alienryderflex.com/hsp.html
-class HspColor extends cm.HspColor with CastColor {
+class HspColor extends cm.HspColor with ToColor {
   /// A color in the HSP color space.
   ///
   /// [hue] must be `>= 0` and `<= 360`.
@@ -30,7 +30,7 @@ class HspColor extends cm.HspColor with CastColor {
         super(hue, saturation, perceivedBrightness, alpha);
 
   @override
-  HspColor get inverted => CastColor.cast(CastColor.cast(this).inverted);
+  HspColor get inverted => ToColor.cast(ToColor.cast(this).inverted);
 
   @override
   HspColor get opposite => rotateHue(180);
@@ -49,7 +49,7 @@ class HspColor extends cm.HspColor with CastColor {
     assert(amount != null && amount > 0);
     assert(relative != null);
 
-    return CastColor.cast(CastColor.cast(this).warmer(amount, relative: relative));
+    return ToColor.cast(ToColor.cast(this).warmer(amount, relative: relative));
   }
 
   @override
@@ -57,7 +57,7 @@ class HspColor extends cm.HspColor with CastColor {
     assert(amount != null && amount > 0);
     assert(relative != null);
 
-    return CastColor.cast(CastColor.cast(this).cooler(amount, relative: relative));
+    return ToColor.cast(ToColor.cast(this).cooler(amount, relative: relative));
   }
 
   @override
@@ -94,7 +94,7 @@ class HspColor extends cm.HspColor with CastColor {
   factory HspColor.from(ColorModel color) {
     assert(color != null);
 
-    color = CastColor.cast(color);
+    color = ToColor.cast(color);
 
     final hsp = cm.ColorConverter.toHspColor(color);
 
@@ -199,7 +199,7 @@ class HspColor extends cm.HspColor with CastColor {
         maxPerceivedBrightness >= minPerceivedBrightness &&
         maxPerceivedBrightness <= 100);
 
-    return CastColor.cast(cm.HspColor.random(
+    return ToColor.cast(cm.HspColor.random(
       minHue: minHue,
       maxHue: maxHue,
       minSaturation: minSaturation,

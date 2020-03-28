@@ -2,7 +2,7 @@ import 'package:flutter/material.dart' show Color;
 import 'package:color_models/color_models.dart' as cm;
 import '../color_model.dart';
 
-mixin CastColor on ColorModel {
+mixin ToColor on ColorModel {
   @override
   bool equals(ColorModel color) {
     assert(color != null);
@@ -49,7 +49,7 @@ mixin CastColor on ColorModel {
   @override
   XyzColor toXyzColor() => XyzColor.from(this);
 
-  /// Casts [ColorModel]s to and from flutter_color_models' models
+  /// Casts [ColorModel]s to and from this package's models
   /// and the color_model package's models.
   static ColorModel cast(ColorModel color) {
     assert(color != null);

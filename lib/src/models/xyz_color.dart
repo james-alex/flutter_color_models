@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart' show Color;
 import 'package:color_models/color_models.dart' as cm;
 import '../color_model.dart';
-import '../helpers/cast_color.dart';
+import '../helpers/to_color.dart';
 
 /// A color in the CIEXYZ color space.
-class XyzColor extends cm.XyzColor with CastColor {
+class XyzColor extends cm.XyzColor with ToColor {
   /// A color in the CIEXYZ color space.
   ///
   /// [x], [y], and [z] must all be `>= 0`.
@@ -26,7 +26,7 @@ class XyzColor extends cm.XyzColor with CastColor {
         super(x, y, z, alpha);
 
   @override
-  XyzColor get inverted => CastColor.cast(CastColor.cast(this).inverted);
+  XyzColor get inverted => ToColor.cast(ToColor.cast(this).inverted);
 
   @override
   XyzColor get opposite => rotateHue(180);
@@ -45,7 +45,7 @@ class XyzColor extends cm.XyzColor with CastColor {
     assert(amount != null && amount > 0);
     assert(relative != null);
 
-    return CastColor.cast(CastColor.cast(this).warmer(amount, relative: relative));
+    return ToColor.cast(ToColor.cast(this).warmer(amount, relative: relative));
   }
 
   @override
@@ -53,7 +53,7 @@ class XyzColor extends cm.XyzColor with CastColor {
     assert(amount != null && amount > 0);
     assert(relative != null);
 
-    return CastColor.cast(CastColor.cast(this).cooler(amount, relative: relative));
+    return ToColor.cast(ToColor.cast(this).cooler(amount, relative: relative));
   }
 
   @override
@@ -98,7 +98,7 @@ class XyzColor extends cm.XyzColor with CastColor {
   factory XyzColor.from(ColorModel color) {
     assert(color != null);
 
-    color = CastColor.cast(color);
+    color = ToColor.cast(color);
 
     final xyz = cm.ColorConverter.toXyzColor(color);
 
@@ -193,7 +193,7 @@ class XyzColor extends cm.XyzColor with CastColor {
     assert(minZ != null && minZ >= 0 && minZ <= maxZ);
     assert(maxZ != null && maxZ >= minZ && maxZ <= 100);
 
-    return CastColor.cast(cm.XyzColor.random(
+    return ToColor.cast(cm.XyzColor.random(
       minX: minX,
       maxX: maxX,
       minY: minY,

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart' show Color;
 import 'package:color_models/color_models.dart' as cm;
 import '../color_model.dart';
-import '../helpers/cast_color.dart';
+import '../helpers/to_color.dart';
 
 /// A color in the HSL color space.
 ///
 /// The HSL color space contains channels for [hue],
 /// [saturation], and [lightness].
-class HslColor extends cm.HslColor with CastColor {
+class HslColor extends cm.HslColor with ToColor {
   /// A color in the HSL color space.
   ///
   /// [hue] must be `>= 0` and `<= 360`.
@@ -25,7 +25,7 @@ class HslColor extends cm.HslColor with CastColor {
         super(hue, saturation, lightness, alpha);
 
   @override
-  HslColor get inverted => CastColor.cast(CastColor.cast(this).inverted);
+  HslColor get inverted => ToColor.cast(ToColor.cast(this).inverted);
 
   @override
   HslColor get opposite => rotateHue(180);
@@ -44,7 +44,7 @@ class HslColor extends cm.HslColor with CastColor {
     assert(amount != null && amount > 0);
     assert(relative != null);
 
-    return CastColor.cast(CastColor.cast(this).warmer(amount, relative: relative));
+    return ToColor.cast(ToColor.cast(this).warmer(amount, relative: relative));
   }
 
   @override
@@ -52,7 +52,7 @@ class HslColor extends cm.HslColor with CastColor {
     assert(amount != null && amount > 0);
     assert(relative != null);
 
-    return CastColor.cast(CastColor.cast(this).cooler(amount, relative: relative));
+    return ToColor.cast(ToColor.cast(this).cooler(amount, relative: relative));
   }
 
   @override
@@ -87,7 +87,7 @@ class HslColor extends cm.HslColor with CastColor {
   factory HslColor.from(ColorModel color) {
     assert(color != null);
 
-    color = CastColor.cast(color);
+    color = ToColor.cast(color);
 
     final hsl = cm.ColorConverter.toHslColor(color);
 
@@ -190,7 +190,7 @@ class HslColor extends cm.HslColor with CastColor {
         maxLightness >= minLightness &&
         maxLightness <= 100);
 
-    return CastColor.cast(cm.HslColor.random(
+    return ToColor.cast(cm.HslColor.random(
       minHue: minHue,
       maxHue: maxHue,
       minSaturation: minSaturation,

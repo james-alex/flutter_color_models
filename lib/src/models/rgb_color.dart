@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart' show Color;
 import 'package:color_models/color_models.dart' as cm;
 import '../color_model.dart';
-import '../helpers/cast_color.dart';
+import '../helpers/to_color.dart';
 
 /// A color in the sRGB color space.
 ///
@@ -12,7 +12,7 @@ import '../helpers/cast_color.dart';
 /// getters set for [red], [green], and [blue] that return the rounded
 /// [int] values. The precise values can returned as a list with the
 /// `toPreciseList()` method.
-class RgbColor extends cm.RgbColor with CastColor {
+class RgbColor extends cm.RgbColor with ToColor {
   /// A color in the sRGB color space.
   ///
   /// [_red], [_green], and [_blue] must all be `>= 0` and `<= 255`.
@@ -28,7 +28,7 @@ class RgbColor extends cm.RgbColor with CastColor {
         super(red, green, blue, alpha);
 
   @override
-  RgbColor get inverted => CastColor.cast(CastColor.cast(this).inverted);
+  RgbColor get inverted => ToColor.cast(ToColor.cast(this).inverted);
 
   @override
   RgbColor get opposite => rotateHue(180);
@@ -47,7 +47,7 @@ class RgbColor extends cm.RgbColor with CastColor {
     assert(amount != null && amount > 0);
     assert(relative != null);
 
-    return CastColor.cast(CastColor.cast(this).warmer(amount, relative: relative));
+    return ToColor.cast(ToColor.cast(this).warmer(amount, relative: relative));
   }
 
   @override
@@ -55,7 +55,7 @@ class RgbColor extends cm.RgbColor with CastColor {
     assert(amount != null && amount > 0);
     assert(relative != null);
 
-    return CastColor.cast(CastColor.cast(this).cooler(amount, relative: relative));
+    return ToColor.cast(ToColor.cast(this).cooler(amount, relative: relative));
   }
 
   @override
@@ -100,7 +100,7 @@ class RgbColor extends cm.RgbColor with CastColor {
   factory RgbColor.from(ColorModel color) {
     assert(color != null);
 
-    color = CastColor.cast(color);
+    color = ToColor.cast(color);
 
     final rgb = color.toRgbColor();
 
@@ -189,7 +189,7 @@ class RgbColor extends cm.RgbColor with CastColor {
     assert(minBlue != null && minBlue >= 0 && minBlue <= maxBlue);
     assert(maxBlue != null && maxBlue >= minBlue && maxBlue <= 255);
 
-    return CastColor.cast(cm.RgbColor.random(
+    return ToColor.cast(cm.RgbColor.random(
       minRed: minRed,
       maxRed: maxRed,
       minGreen: minGreen,
