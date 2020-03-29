@@ -94,6 +94,9 @@ class LabColor extends cm.LabColor with ToColor {
     return hslColor.withHue((hslColor.hue + hue) % 360).toLabColor();
   }
 
+  @override
+  LabColor toLabColor() => this;
+
   /// Constructs a [LabColor] from [color].
   factory LabColor.from(ColorModel color) {
     assert(color != null);

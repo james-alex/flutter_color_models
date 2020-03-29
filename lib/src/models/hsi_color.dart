@@ -83,6 +83,9 @@ class HsiColor extends cm.HsiColor with ToColor {
     return HsiColor(hue, saturation, intensity, alpha);
   }
 
+  @override
+  HsiColor toHsiColor() => this;
+
   /// Constructs a [HsiColor] from [color].
   factory HsiColor.from(ColorModel color) {
     assert(color != null);

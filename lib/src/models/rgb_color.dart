@@ -96,6 +96,9 @@ class RgbColor extends cm.RgbColor with ToColor {
     return hslColor.withHue((hslColor.hue + hue) % 360).toRgbColor();
   }
 
+  @override
+  RgbColor toRgbColor() => this;
+
   /// Constructs a [RgbColor] from [color].
   factory RgbColor.from(ColorModel color) {
     assert(color != null);

@@ -90,6 +90,9 @@ class HspColor extends cm.HspColor with ToColor {
     return HspColor(hue, saturation, perceivedBrightness, alpha);
   }
 
+  @override
+  HspColor toHspColor() => this;
+
   /// Constructs a [HspColor] from [color].
   factory HspColor.from(ColorModel color) {
     assert(color != null);

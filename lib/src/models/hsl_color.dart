@@ -83,6 +83,9 @@ class HslColor extends cm.HslColor with ToColor {
     return HslColor(hue, saturation, lightness, alpha);
   }
 
+  @override
+  HslColor toHslColor() => this;
+
   /// Constructs a [HslColor] from [color].
   factory HslColor.from(ColorModel color) {
     assert(color != null);

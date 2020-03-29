@@ -94,6 +94,9 @@ class XyzColor extends cm.XyzColor with ToColor {
     return hslColor.withHue((hslColor.hue + hue) % 360).toXyzColor();
   }
 
+  @override
+  XyzColor toXyzColor() => this;
+
   /// Constructs a [XyzColor] from [color].
   factory XyzColor.from(ColorModel color) {
     assert(color != null);

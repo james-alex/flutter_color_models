@@ -101,6 +101,9 @@ class CmykColor extends cm.CmykColor with ToColor {
     return hslColor.withHue((hslColor.hue + hue) % 360).toCmykColor();
   }
 
+  @override
+  CmykColor toCmykColor() => this;
+
   /// Constructs a [CmykColor] from [color].
   factory CmykColor.from(ColorModel color) {
     assert(color != null);

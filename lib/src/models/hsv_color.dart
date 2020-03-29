@@ -83,6 +83,9 @@ class HsvColor extends cm.HsvColor with ToColor {
     return HsvColor(hue, saturation, value, alpha);
   }
 
+  @override
+  HsvColor toHsvColor() => this;
+
   /// Constructs a [HsvColor] from [color].
   factory HsvColor.from(ColorModel color) {
     assert(color != null);
