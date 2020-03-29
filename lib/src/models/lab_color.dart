@@ -26,6 +26,22 @@ class LabColor extends cm.LabColor with ToColor {
         super(lightness, a, b, alpha);
 
   @override
+  List<LabColor> interpolateTo(
+    ColorModel color,
+    int steps, {
+    bool excludeOriginalColors = false,
+  }) {
+    assert(color != null);
+    assert(steps != null && steps > 0);
+    assert(excludeOriginalColors != null);
+
+    final colors = ToColor.cast(this).interpolateTo(ToColor.cast(color), steps,
+        excludeOriginalColors: excludeOriginalColors);
+
+    return List<LabColor>.from(colors.map(ToColor.cast));
+  }
+
+  @override
   LabColor get inverted => ToColor.cast(ToColor.cast(this).inverted);
 
   @override

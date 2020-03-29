@@ -26,6 +26,22 @@ class XyzColor extends cm.XyzColor with ToColor {
         super(x, y, z, alpha);
 
   @override
+  List<XyzColor> interpolateTo(
+    ColorModel color,
+    int steps, {
+    bool excludeOriginalColors = false,
+  }) {
+    assert(color != null);
+    assert(steps != null && steps > 0);
+    assert(excludeOriginalColors != null);
+
+    final colors = ToColor.cast(this).interpolateTo(ToColor.cast(color), steps,
+        excludeOriginalColors: excludeOriginalColors);
+
+    return List<XyzColor>.from(colors.map(ToColor.cast));
+  }
+
+  @override
   XyzColor get inverted => ToColor.cast(ToColor.cast(this).inverted);
 
   @override

@@ -30,6 +30,22 @@ class HspColor extends cm.HspColor with ToColor {
         super(hue, saturation, perceivedBrightness, alpha);
 
   @override
+  List<HspColor> interpolateTo(
+    ColorModel color,
+    int steps, {
+    bool excludeOriginalColors = false,
+  }) {
+    assert(color != null);
+    assert(steps != null && steps > 0);
+    assert(excludeOriginalColors != null);
+
+    final colors = ToColor.cast(this).interpolateTo(ToColor.cast(color), steps,
+        excludeOriginalColors: excludeOriginalColors);
+
+    return List<HspColor>.from(colors.map(ToColor.cast));
+  }
+
+  @override
   HspColor get inverted => ToColor.cast(ToColor.cast(this).inverted);
 
   @override

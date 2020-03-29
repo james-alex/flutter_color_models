@@ -25,6 +25,22 @@ class HsvColor extends cm.HsvColor with ToColor {
         super(hue, saturation, value, alpha);
 
   @override
+  List<HsvColor> interpolateTo(
+    ColorModel color,
+    int steps, {
+    bool excludeOriginalColors = false,
+  }) {
+    assert(color != null);
+    assert(steps != null && steps > 0);
+    assert(excludeOriginalColors != null);
+
+    final colors = ToColor.cast(this).interpolateTo(ToColor.cast(color), steps,
+        excludeOriginalColors: excludeOriginalColors);
+
+    return List<HsvColor>.from(colors.map(ToColor.cast));
+  }
+
+  @override
   HsvColor get inverted => ToColor.cast(ToColor.cast(this).inverted);
 
   @override

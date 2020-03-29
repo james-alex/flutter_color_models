@@ -28,6 +28,22 @@ class RgbColor extends cm.RgbColor with ToColor {
         super(red, green, blue, alpha);
 
   @override
+  List<RgbColor> interpolateTo(
+    ColorModel color,
+    int steps, {
+    bool excludeOriginalColors = false,
+  }) {
+    assert(color != null);
+    assert(steps != null && steps > 0);
+    assert(excludeOriginalColors != null);
+
+    final colors = ToColor.cast(this).interpolateTo(ToColor.cast(color), steps,
+        excludeOriginalColors: excludeOriginalColors);
+
+    return List<RgbColor>.from(colors.map(ToColor.cast));
+  }
+
+  @override
   RgbColor get inverted => ToColor.cast(ToColor.cast(this).inverted);
 
   @override

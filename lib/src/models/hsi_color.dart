@@ -25,6 +25,22 @@ class HsiColor extends cm.HsiColor with ToColor {
         super(hue, saturation, intensity, alpha);
 
   @override
+  List<HsiColor> interpolateTo(
+    ColorModel color,
+    int steps, {
+    bool excludeOriginalColors = false,
+  }) {
+    assert(color != null);
+    assert(steps != null && steps > 0);
+    assert(excludeOriginalColors != null);
+
+    final colors = ToColor.cast(this).interpolateTo(ToColor.cast(color), steps,
+        excludeOriginalColors: excludeOriginalColors);
+
+    return List<HsiColor>.from(colors.map(ToColor.cast));
+  }
+
+  @override
   HsiColor get inverted => ToColor.cast(ToColor.cast(this).inverted);
 
   @override
