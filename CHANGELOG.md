@@ -1,3 +1,11 @@
+## [0.1.6] - March 29, 2020
+
+* Added the [interpolateTo] method to each color model.
+
+* Override the conversion methods on each color model that return their own
+respective color spaces. Colors were being unnecessarily converted back and
+forth from RGB.
+
 ## [0.1.5+1] - March 27, 2020
 
 * Added the global [toColor] method.
