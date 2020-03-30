@@ -71,7 +71,8 @@ mixin ToColor on ColorModel {
         color = cm.LabColor.fromList(color.toListWithAlpha());
         break;
       case RgbColor:
-        color = cm.RgbColor.fromList(color.toListWithAlpha());
+        color =
+            cm.RgbColor.fromList((color as RgbColor).toPreciseListWithAlpha());
         break;
       case XyzColor:
         color = cm.XyzColor.fromList(color.toListWithAlpha());
@@ -95,7 +96,8 @@ mixin ToColor on ColorModel {
         color = LabColor.fromList(color.toListWithAlpha());
         break;
       case cm.RgbColor:
-        color = RgbColor.fromList(color.toListWithAlpha());
+        color =
+            RgbColor.fromList((color as cm.RgbColor).toPreciseListWithAlpha());
         break;
       case cm.XyzColor:
         color = XyzColor.fromList(color.toListWithAlpha());
