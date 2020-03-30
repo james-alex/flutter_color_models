@@ -11,7 +11,7 @@ import '../helpers/to_color.dart';
 /// a loss of precision when converting between color spaces, but has
 /// getters set for [red], [green], and [blue] that return the rounded
 /// [int] values. The precise values can returned as a list with the
-/// `toPreciseList()` method.
+/// [toPreciseList] and [toPreciseListWithAlpha] methods.
 class RgbColor extends cm.RgbColor with ToColor {
   /// A color in the sRGB color space.
   ///
