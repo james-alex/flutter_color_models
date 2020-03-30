@@ -166,8 +166,8 @@ void main() {
                       : _interpolateValue(values1[l], values2[l], step);
 
                   if (color2 is LabColor || color2 is HspColor) {
-                    expect((values[l] - expectedValue).abs() < 0.25,
-                        equals(true));
+                    expect(
+                        (values[l] - expectedValue).abs() < 0.25, equals(true));
                   } else {
                     expect((values[l] - expectedValue).abs() < 0.00001,
                         equals(true));
