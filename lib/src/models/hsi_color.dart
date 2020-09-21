@@ -8,7 +8,7 @@ import '../helpers/to_color.dart';
 /// The HSI color space contains channels for [hue],
 /// [saturation], and [intensity].
 class HsiColor extends cm.HsiColor with ToColor {
-  /// A color in the HSV (HSB) color space.
+  /// A color in the HSI color space.
   ///
   /// [hue] must be `>= 0` and `<= 360`.
   ///
