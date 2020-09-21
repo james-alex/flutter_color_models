@@ -17,11 +17,11 @@ class HslColor extends cm.HslColor with ToColor {
     num hue,
     num saturation,
     num lightness, [
-    num alpha = 1.0,
+    int alpha = 255,
   ])  : assert(hue != null && hue >= 0 && hue <= 360),
         assert(saturation != null && saturation >= 0 && saturation <= 100),
         assert(lightness != null && lightness >= 0 && lightness <= 100),
-        assert(alpha != null && alpha >= 0 && alpha <= 1),
+        assert(alpha != null && alpha >= 0 && alpha <= 255),
         super(hue, saturation, lightness, alpha);
 
   @override
@@ -94,7 +94,7 @@ class HslColor extends cm.HslColor with ToColor {
 
   @override
   HslColor withAlpha(num alpha) {
-    assert(alpha != null && alpha >= 0 && alpha <= 1);
+    assert(alpha != null && alpha >= 0 && alpha <= 255);
 
     return HslColor(hue, saturation, lightness, alpha);
   }
@@ -124,10 +124,10 @@ class HslColor extends cm.HslColor with ToColor {
     assert(hsl[1] != null && hsl[1] >= 0 && hsl[1] <= 100);
     assert(hsl[2] != null && hsl[2] >= 0 && hsl[2] <= 100);
     if (hsl.length == 4) {
-      assert(hsl[3] != null && hsl[3] >= 0 && hsl[3] <= 1);
+      assert(hsl[3] != null && hsl[3] >= 0 && hsl[3] <= 255);
     }
 
-    final alpha = hsl.length == 4 ? hsl[3] : 1.0;
+    final alpha = hsl.length == 4 ? hsl[3].round() : 255;
 
     return HslColor(hsl[0], hsl[1], hsl[2], alpha);
   }
@@ -165,7 +165,7 @@ class HslColor extends cm.HslColor with ToColor {
       assert(hsl[3] != null && hsl[3] >= 0 && hsl[3] <= 1);
     }
 
-    final alpha = hsl.length == 4 ? hsl[3] : 1.0;
+    final alpha = hsl.length == 4 ? (hsl[3] * 255).round() : 255;
 
     return HslColor(hsl[0] * 360, hsl[1] * 100, hsl[2] * 100, alpha);
   }

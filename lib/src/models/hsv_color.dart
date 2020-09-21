@@ -17,11 +17,11 @@ class HsvColor extends cm.HsvColor with ToColor {
     num hue,
     num saturation,
     num value, [
-    num alpha = 1.0,
+    int alpha = 255,
   ])  : assert(hue != null && hue >= 0 && hue <= 360),
         assert(saturation != null && saturation >= 0 && saturation <= 100),
         assert(value != null && value >= 0 && value <= 100),
-        assert(alpha != null && alpha >= 0 && alpha <= 1),
+        assert(alpha != null && alpha >= 0 && alpha <= 255),
         super(hue, saturation, value, alpha);
 
   @override
@@ -94,7 +94,7 @@ class HsvColor extends cm.HsvColor with ToColor {
 
   @override
   HsvColor withAlpha(num alpha) {
-    assert(alpha != null && alpha >= 0 && alpha <= 1);
+    assert(alpha != null && alpha >= 0 && alpha <= 255);
 
     return HsvColor(hue, saturation, value, alpha);
   }
@@ -126,10 +126,10 @@ class HsvColor extends cm.HsvColor with ToColor {
     assert(hsv[1] != null && hsv[1] >= 0 && hsv[1] <= 100);
     assert(hsv[2] != null && hsv[2] >= 0 && hsv[2] <= 100);
     if (hsv.length == 4) {
-      assert(hsv[3] != null && hsv[3] >= 0 && hsv[3] <= 1);
+      assert(hsv[3] != null && hsv[3] >= 0 && hsv[3] <= 255);
     }
 
-    final alpha = hsv.length == 4 ? hsv[3] : 1.0;
+    final alpha = hsv.length == 4 ? hsv[3].round() : 255;
 
     return HsvColor(hsv[0], hsv[1], hsv[2], alpha);
   }
@@ -167,7 +167,7 @@ class HsvColor extends cm.HsvColor with ToColor {
       assert(hsv[3] != null && hsv[3] >= 0 && hsv[3] <= 1);
     }
 
-    final alpha = hsv.length == 4 ? hsv[3] : 1.0;
+    final alpha = hsv.length == 4 ? (hsv[3] * 255).round() : 255;
 
     return HsvColor(hsv[0] * 360, hsv[1] * 100, hsv[2] * 100, alpha);
   }

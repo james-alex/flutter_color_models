@@ -20,13 +20,13 @@ class HspColor extends cm.HspColor with ToColor {
     num hue,
     num saturation,
     num perceivedBrightness, [
-    num alpha = 1.0,
+    int alpha = 255,
   ])  : assert(hue != null && hue >= 0 && hue <= 360),
         assert(saturation != null && saturation >= 0 && saturation <= 100),
         assert(perceivedBrightness != null &&
             perceivedBrightness >= 0 &&
             perceivedBrightness <= 100),
-        assert(alpha != null && alpha >= 0 && alpha <= 1),
+        assert(alpha != null && alpha >= 0 && alpha <= 255),
         super(hue, saturation, perceivedBrightness, alpha);
 
   @override
@@ -101,7 +101,7 @@ class HspColor extends cm.HspColor with ToColor {
 
   @override
   HspColor withAlpha(num alpha) {
-    assert(alpha != null && alpha >= 0 && alpha <= 1);
+    assert(alpha != null && alpha >= 0 && alpha <= 255);
 
     return HspColor(hue, saturation, perceivedBrightness, alpha);
   }
@@ -133,10 +133,10 @@ class HspColor extends cm.HspColor with ToColor {
     assert(hsp[1] != null && hsp[1] >= 0 && hsp[1] <= 100);
     assert(hsp[2] != null && hsp[2] >= 0 && hsp[2] <= 100);
     if (hsp.length == 4) {
-      assert(hsp[3] != null && hsp[3] >= 0 && hsp[3] <= 1);
+      assert(hsp[3] != null && hsp[3] >= 0 && hsp[3] <= 255);
     }
 
-    final alpha = hsp.length == 4 ? hsp[3] : 1.0;
+    final alpha = hsp.length == 4 ? hsp[3].round() : 255;
 
     return HspColor(hsp[0], hsp[1], hsp[2], alpha);
   }
@@ -174,7 +174,7 @@ class HspColor extends cm.HspColor with ToColor {
       assert(hsp[3] != null && hsp[3] >= 0 && hsp[3] <= 1);
     }
 
-    final alpha = hsp.length == 4 ? hsp[3] : 1.0;
+    final alpha = hsp.length == 4 ? (hsp[3] * 255).round() : 255;
 
     return HspColor(hsp[0] * 360, hsp[1] * 100, hsp[2] * 100, alpha);
   }

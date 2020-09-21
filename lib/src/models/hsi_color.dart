@@ -17,11 +17,11 @@ class HsiColor extends cm.HsiColor with ToColor {
     num hue,
     num saturation,
     num intensity, [
-    num alpha = 1.0,
+    int alpha = 255,
   ])  : assert(hue != null && hue >= 0 && hue <= 360),
         assert(saturation != null && saturation >= 0 && saturation <= 100),
         assert(intensity != null && intensity >= 0 && intensity <= 100),
-        assert(alpha != null && alpha >= 0 && alpha <= 1),
+        assert(alpha != null && alpha >= 0 && alpha <= 255),
         super(hue, saturation, intensity, alpha);
 
   @override
@@ -94,7 +94,7 @@ class HsiColor extends cm.HsiColor with ToColor {
 
   @override
   HsiColor withAlpha(num alpha) {
-    assert(alpha != null && alpha >= 0 && alpha <= 1);
+    assert(alpha != null && alpha >= 0 && alpha <= 255);
 
     return HsiColor(hue, saturation, intensity, alpha);
   }
@@ -126,10 +126,10 @@ class HsiColor extends cm.HsiColor with ToColor {
     assert(hsi[1] != null && hsi[1] >= 0 && hsi[1] <= 100);
     assert(hsi[2] != null && hsi[2] >= 0 && hsi[2] <= 100);
     if (hsi.length == 4) {
-      assert(hsi[3] != null && hsi[3] >= 0 && hsi[3] <= 1);
+      assert(hsi[3] != null && hsi[3] >= 0 && hsi[3] <= 255);
     }
 
-    final alpha = hsi.length == 4 ? hsi[3] : 1.0;
+    final alpha = hsi.length == 4 ? hsi[3].round() : 255;
 
     return HsiColor(hsi[0], hsi[1], hsi[2], alpha);
   }
@@ -167,7 +167,7 @@ class HsiColor extends cm.HsiColor with ToColor {
       assert(hsi[3] != null && hsi[3] >= 0 && hsi[3] <= 1);
     }
 
-    final alpha = hsi.length == 4 ? hsi[3] : 1.0;
+    final alpha = hsi.length == 4 ? (hsi[3] * 255).round() : 255;
 
     return HsiColor(hsi[0] * 360, hsi[1] * 100, hsi[2] * 100, alpha);
   }

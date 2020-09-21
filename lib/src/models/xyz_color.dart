@@ -18,11 +18,11 @@ class XyzColor extends cm.XyzColor with ToColor {
     num x,
     num y,
     num z, [
-    num alpha = 1.0,
+    int alpha = 255,
   ])  : assert(x != null && x >= 0),
         assert(y != null && y >= 0),
         assert(z != null && z >= 0),
-        assert(alpha != null && alpha >= 0 && alpha <= 1),
+        assert(alpha != null && alpha >= 0 && alpha <= 255),
         super(x, y, z, alpha);
 
   @override
@@ -95,7 +95,7 @@ class XyzColor extends cm.XyzColor with ToColor {
 
   @override
   XyzColor withAlpha(num alpha) {
-    assert(alpha != null && alpha >= 0 && alpha <= 1);
+    assert(alpha != null && alpha >= 0 && alpha <= 255);
 
     return XyzColor(x, y, z, alpha);
   }
@@ -141,10 +141,10 @@ class XyzColor extends cm.XyzColor with ToColor {
     assert(xyz[1] != null && xyz[1] >= 0 && xyz[1] <= 100);
     assert(xyz[2] != null && xyz[2] >= 0 && xyz[2] <= 100);
     if (xyz.length == 4) {
-      assert(xyz[3] != null && xyz[3] >= 0 && xyz[3] <= 1);
+      assert(xyz[3] != null && xyz[3] >= 0 && xyz[3] <= 255);
     }
 
-    final alpha = xyz.length == 4 ? xyz[3] : 1.0;
+    final alpha = xyz.length == 4 ? xyz[3].round() : 255;
 
     return XyzColor(xyz[0], xyz[1], xyz[2], alpha);
   }
@@ -182,7 +182,7 @@ class XyzColor extends cm.XyzColor with ToColor {
       assert(xyz[3] != null && xyz[3] >= 0 && xyz[3] <= 1);
     }
 
-    final alpha = xyz.length == 4 ? xyz[3] : 1.0;
+    final alpha = xyz.length == 4 ? (xyz[3] * 255).round() : 255;
 
     return XyzColor(xyz[0] * 100, xyz[1] * 100, xyz[2] * 100, alpha);
   }

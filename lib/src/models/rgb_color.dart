@@ -20,11 +20,11 @@ class RgbColor extends cm.RgbColor with ToColor {
     num red,
     num green,
     num blue, [
-    num alpha = 1.0,
+    int alpha = 255,
   ])  : assert(red != null && red >= 0 && red <= 255),
         assert(green != null && green >= 0 && green <= 255),
         assert(blue != null && blue >= 0 && green <= 255),
-        assert(alpha != null && alpha >= 0 && alpha <= 1),
+        assert(alpha != null && alpha >= 0 && alpha <= 255),
         super(red, green, blue, alpha);
 
   @override
@@ -97,7 +97,7 @@ class RgbColor extends cm.RgbColor with ToColor {
 
   @override
   RgbColor withAlpha(num alpha) {
-    assert(alpha != null && alpha >= 0 && alpha <= 1);
+    assert(alpha != null && alpha >= 0 && alpha <= 255);
 
     return RgbColor(red, green, blue, alpha);
   }
@@ -137,10 +137,10 @@ class RgbColor extends cm.RgbColor with ToColor {
     assert(rgb[1] != null && rgb[1] >= 0 && rgb[1] <= 255);
     assert(rgb[2] != null && rgb[2] >= 0 && rgb[2] <= 255);
     if (rgb.length == 4) {
-      assert(rgb[3] != null && rgb[3] >= 0 && rgb[3] <= 1);
+      assert(rgb[3] != null && rgb[3] >= 0 && rgb[3] <= 255);
     }
 
-    final alpha = rgb.length == 4 ? rgb[3] : 1.0;
+    final alpha = rgb.length == 4 ? rgb[3].round() : 255;
 
     return RgbColor(rgb[0], rgb[1], rgb[2], alpha);
   }
@@ -178,7 +178,7 @@ class RgbColor extends cm.RgbColor with ToColor {
       assert(rgb[3] != null && rgb[3] >= 0 && rgb[3] <= 1);
     }
 
-    final alpha = rgb.length == 4 ? rgb[3] : 1.0;
+    final alpha = rgb.length == 4 ? (rgb[3] * 255).round() : 255;
 
     return RgbColor(rgb[0] * 255, rgb[1] * 255, rgb[2] * 255, alpha);
   }

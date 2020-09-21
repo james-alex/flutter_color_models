@@ -17,12 +17,12 @@ class CmykColor extends cm.CmykColor with ToColor {
     num magenta,
     num yellow,
     num black, [
-    num alpha = 1.0,
+    int alpha = 255,
   ])  : assert(cyan != null && cyan >= 0 && cyan <= 100),
         assert(magenta != null && magenta >= 0 && magenta <= 100),
         assert(yellow != null && yellow >= 0 && yellow <= 100),
         assert(black != null && black >= 0 && black <= 100),
-        assert(alpha != null && alpha >= 0 && alpha <= 1),
+        assert(alpha != null && alpha >= 0 && alpha <= 255),
         super(cyan, magenta, yellow, black, alpha);
 
   @override
@@ -103,7 +103,7 @@ class CmykColor extends cm.CmykColor with ToColor {
   /// Returns this [CmykColor] modified with the provided [alpha] value.
   @override
   CmykColor withAlpha(num alpha) {
-    assert(alpha != null && alpha >= 0 && alpha <= 1);
+    assert(alpha != null && alpha >= 0 && alpha <= 255);
 
     return CmykColor(cyan, magenta, yellow, black, alpha);
   }
@@ -143,10 +143,10 @@ class CmykColor extends cm.CmykColor with ToColor {
     assert(cmyk[2] != null && cmyk[2] >= 0 && cmyk[2] <= 100);
     assert(cmyk[3] != null && cmyk[3] >= 0 && cmyk[3] <= 100);
     if (cmyk.length == 5) {
-      assert(cmyk[4] != null && cmyk[4] >= 0 && cmyk[4] <= 1);
+      assert(cmyk[4] != null && cmyk[4] >= 0 && cmyk[4] <= 255);
     }
 
-    final alpha = cmyk.length == 5 ? cmyk[4] : 1.0;
+    final alpha = cmyk.length == 5 ? cmyk[4].round() : 255;
 
     return CmykColor(cmyk[0], cmyk[1], cmyk[2], cmyk[3], alpha);
   }
@@ -186,7 +186,7 @@ class CmykColor extends cm.CmykColor with ToColor {
       assert(cmyk[4] != null && cmyk[4] >= 0 && cmyk[4] <= 1);
     }
 
-    final alpha = cmyk.length == 5 ? cmyk[4] : 1.0;
+    final alpha = cmyk.length == 5 ? (cmyk[4] * 255).round() : 255;
 
     return CmykColor(
         cmyk[0] * 100, cmyk[1] * 100, cmyk[2] * 100, cmyk[3] * 100, alpha);
