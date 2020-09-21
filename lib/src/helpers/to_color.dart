@@ -3,6 +3,7 @@ import 'package:color_models/color_models.dart' as cm;
 import '../color_model.dart';
 import './cast_to_color.dart' as ctc;
 
+/// Mixes in methods to convert a color to any other color model.
 mixin ToColor on ColorModel {
   @override
   bool equals(ColorModel color) {
