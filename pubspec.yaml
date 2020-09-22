@@ -3,7 +3,7 @@ description: >-
   A set of classes representing the CMYK, HSI, HSL, HSP, HSB, LAB,
   RGB, and XYZ color spaces with methods to convert colors between
   each space.
-version: 0.1.6
+version: 0.2.0
 homepage: https://github.com/james-alex/flutter_color_models
 
 environment:
