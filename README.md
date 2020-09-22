@@ -17,9 +17,9 @@ import 'package:flutter_color_models/flutter_color_models.dart';
 
 ## Color Spaces
 
-color_models exposes models for the CMYK, HSI, HSL, HSP, HSV, LAB, RGB,
+color_models exposes models for the CMYK, HSI, HSL, HSP, HSB, LAB, RGB,
 and XYZ color spaces; represented as [CmykColor], [HsiColor], [HslColor],
-[HspColor], [HsvColor], [LabColor], [RgbColor], and [XyzColor] respectively.
+[HspColor], [HsbColor], [LabColor], [RgbColor], and [XyzColor] respectively.
 
 Each model is constant and extends [ColorModel].
 
@@ -81,7 +81,7 @@ HslColor toHslColor();
 
 HspColor toHspColor();
 
-HsvColor toHsvColor();
+HsbColor toHsbColor();
 
 LabColor toLabColor();
 
@@ -94,8 +94,8 @@ Altenatively, each color model has a constructor [ColorModel.from] that can
 accept a color from any color space and returns its own type (T).
 
 ```dart
-// Create a HSV color
-HsvColor originalColor = HsvColor(0.3, 0.8, 0.7);
+// Create a HSB color
+HsbColor originalColor = HsbColor(0.3, 0.8, 0.7);
 
 // Convert it to RGB => RgbColor(64, 179, 36)
 RgbColor rgbColor = RgbColor.from(originalColor);
@@ -103,8 +103,8 @@ RgbColor rgbColor = RgbColor.from(originalColor);
 // Then to CMYK => CmykColor(64.25, 0, 79.89, 29.8)
 CmykColor cmykColor = CmykColor.from(rgbColor);
 
-// Back to HSV => HsvColor(0.3, 0.8, 0.7)
-HsvColor hsvColor = HsvColor.from(cmykColor);
+// Back to HSB => HsbColor(0.3, 0.8, 0.7)
+HsbColor hsbColor = HsbColor.from(cmykColor);
 ```
 
 __Note:__ All color conversions use the RGB color space as an

@@ -33,7 +33,7 @@ mixin ToColor on ColorModel {
 
   /// Converts `this` to the HSV color space.
   @override
-  HsvColor toHsvColor() => HsvColor.from(this);
+  HsbColor toHsbColor() => HsbColor.from(this);
 
   /// Converts `this` to the LAB color space.
   @override
@@ -65,8 +65,8 @@ mixin ToColor on ColorModel {
       case HspColor:
         color = cm.HspColor.fromList(color.toListWithAlpha());
         break;
-      case HsvColor:
-        color = cm.HsvColor.fromList(color.toListWithAlpha());
+      case HsbColor:
+        color = cm.HsbColor.fromList(color.toListWithAlpha());
         break;
       case LabColor:
         color = cm.LabColor.fromList(color.toListWithAlpha());
@@ -90,8 +90,8 @@ mixin ToColor on ColorModel {
       case cm.HspColor:
         color = HspColor.fromList(color.toListWithAlpha());
         break;
-      case cm.HsvColor:
-        color = HsvColor.fromList(color.toListWithAlpha());
+      case cm.HsbColor:
+        color = HsbColor.fromList(color.toListWithAlpha());
         break;
       case cm.LabColor:
         color = LabColor.fromList(color.toListWithAlpha());

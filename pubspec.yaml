@@ -1,6 +1,6 @@
 name: flutter_color_models
 description: >-
-  A set of classes representing the CMYK, HSI, HSL, HSP, HSV, LAB,
+  A set of classes representing the CMYK, HSI, HSL, HSP, HSB, LAB,
   RGB, and XYZ color spaces with methods to convert colors between
   each space.
 version: 0.1.6
