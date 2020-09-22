@@ -9,7 +9,9 @@ import 'helpers/to_color.dart';
 ///
 /// The HSB color space contains channels for [hue],
 /// [saturation], and [brightness].
-class HsbColor extends cm.HsbColor with AsColor, RgbGetters, ToColor implements Color {
+class HsbColor extends cm.HsbColor
+    with AsColor, RgbGetters, ToColor
+    implements Color {
   /// A color in the HSB (HSB) color space.
   ///
   /// [hue] must be `>= 0` and `<= 360`.
@@ -236,8 +238,12 @@ class HsbColor extends cm.HsbColor with AsColor, RgbGetters, ToColor implements 
     assert(maxSaturation != null &&
         maxSaturation >= minSaturation &&
         maxSaturation <= 100);
-    assert(minBrightness != null && minBrightness >= 0 && minBrightness <= maxBrightness);
-    assert(maxBrightness != null && maxBrightness >= minBrightness && maxBrightness <= 100);
+    assert(minBrightness != null &&
+        minBrightness >= 0 &&
+        minBrightness <= maxBrightness);
+    assert(maxBrightness != null &&
+        maxBrightness >= minBrightness &&
+        maxBrightness <= 100);
 
     return ToColor.cast(cm.HsbColor.random(
       minHue: minHue,

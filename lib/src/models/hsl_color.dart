@@ -9,7 +9,9 @@ import 'helpers/to_color.dart';
 ///
 /// The HSL color space contains channels for [hue],
 /// [saturation], and [lightness].
-class HslColor extends cm.HslColor with AsColor, RgbGetters, ToColor implements Color {
+class HslColor extends cm.HslColor
+    with AsColor, RgbGetters, ToColor
+    implements Color {
   /// A color in the HSL color space.
   ///
   /// [hue] must be `>= 0` and `<= 360`.

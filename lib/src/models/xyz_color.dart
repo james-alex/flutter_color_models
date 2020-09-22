@@ -6,7 +6,9 @@ import 'helpers/rgb_getters.dart';
 import 'helpers/to_color.dart';
 
 /// A color in the CIEXYZ color space.
-class XyzColor extends cm.XyzColor with AsColor, RgbGetters, ToColor implements Color {
+class XyzColor extends cm.XyzColor
+    with AsColor, RgbGetters, ToColor
+    implements Color {
   /// A color in the CIEXYZ color space.
   ///
   /// [x], [y], and [z] must all be `>= 0`.

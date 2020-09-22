@@ -9,7 +9,9 @@ import 'helpers/to_color.dart';
 ///
 /// The CMYK color space contains channels for [cyan],
 /// [magenta], [yellow], and [black].
-class CmykColor extends cm.CmykColor with AsColor, RgbGetters, ToColor implements Color {
+class CmykColor extends cm.CmykColor
+    with AsColor, RgbGetters, ToColor
+    implements Color {
   /// A color in the CMYK color space.
   ///
   /// [cyan], [magenta], [yellow], and [black]

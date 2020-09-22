@@ -12,7 +12,9 @@ import 'helpers/to_color.dart';
 ///
 /// The HSP color space was created in 2006 by Darel Rex Finley.
 /// Read about it here: http://alienryderflex.com/hsp.html
-class HspColor extends cm.HspColor with AsColor, RgbGetters, ToColor implements Color {
+class HspColor extends cm.HspColor
+    with AsColor, RgbGetters, ToColor
+    implements Color {
   /// A color in the HSP color space.
   ///
   /// [hue] must be `>= 0` and `<= 360`.

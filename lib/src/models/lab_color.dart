@@ -10,7 +10,9 @@ import 'helpers/to_color.dart';
 /// The CIELAB color space contains channels for [lightness],
 /// [a] (red and green opponent values), and [b] (blue and
 /// yellow opponent values.)
-class LabColor extends cm.LabColor with AsColor, RgbGetters, ToColor implements Color {
+class LabColor extends cm.LabColor
+    with AsColor, RgbGetters, ToColor
+    implements Color {
   /// A color in the CIELAB color space.
   ///
   /// [lightness] must be `>= 0` and `<= 100`.
