@@ -13,7 +13,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  color_models: ^0.3.0
+  color_models: ^0.3.0+1
 
 dev_dependencies:
   flutter_test:
