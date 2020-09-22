@@ -1,14 +1,16 @@
-import 'package:flutter/material.dart' show Color;
+import 'package:flutter/painting.dart' show Color;
 import 'package:color_models/color_models.dart' as cm;
 import '../color_model.dart';
-import '../helpers/to_color.dart';
+import 'helpers/as_color.dart';
+import 'helpers/rgb_getters.dart';
+import 'helpers/to_color.dart';
 
 /// A color in the CIELAB color space.
 ///
 /// The CIELAB color space contains channels for [lightness],
 /// [a] (red and green opponent values), and [b] (blue and
 /// yellow opponent values.)
-class LabColor extends cm.LabColor with ToColor {
+class LabColor extends cm.LabColor with AsColor, RgbGetters, ToColor implements Color {
   /// A color in the CIELAB color space.
   ///
   /// [lightness] must be `>= 0` and `<= 100`.
@@ -26,7 +28,10 @@ class LabColor extends cm.LabColor with ToColor {
         super(lightness, a, b, alpha);
 
   @override
-  List<LabColor> interpolateTo(
+  int get value => toColor().value;
+
+  @override
+  List<LabColor> lerpTo(
     ColorModel color,
     int steps, {
     bool excludeOriginalColors = false,
@@ -35,7 +40,7 @@ class LabColor extends cm.LabColor with ToColor {
     assert(steps != null && steps > 0);
     assert(excludeOriginalColors != null);
 
-    final colors = ToColor.cast(this).interpolateTo(ToColor.cast(color), steps,
+    final colors = ToColor.cast(this).lerpTo(ToColor.cast(color), steps,
         excludeOriginalColors: excludeOriginalColors);
 
     return List<LabColor>.from(colors.map(ToColor.cast));
@@ -94,10 +99,38 @@ class LabColor extends cm.LabColor with ToColor {
   }
 
   @override
-  LabColor withAlpha(num alpha) {
+  LabColor withRed(num red) {
+    assert(red != null && red >= 0 && red <= 255);
+
+    return toRgbColor().withRed(red).toLabColor();
+  }
+
+  @override
+  LabColor withGreen(num green) {
+    assert(green != null && green >= 0 && green <= 255);
+
+    return toRgbColor().withGreen(green).toLabColor();
+  }
+
+  @override
+  LabColor withBlue(num blue) {
+    assert(blue != null && blue >= 0 && blue <= 255);
+
+    return toRgbColor().withBlue(blue).toLabColor();
+  }
+
+  @override
+  LabColor withAlpha(int alpha) {
     assert(alpha != null && alpha >= 0 && alpha <= 255);
 
     return LabColor(lightness, a, b, alpha);
+  }
+
+  @override
+  LabColor withOpacity(double opacity) {
+    assert(opacity != null && opacity >= 0.0 && opacity <= 1.0);
+
+    return withAlpha((opacity * 255).round());
   }
 
   /// Returns this [LabColor] modified with the provided [hue] value.

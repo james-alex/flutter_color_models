@@ -1,10 +1,12 @@
-import 'package:flutter/material.dart' show Color;
+import 'package:flutter/painting.dart' show Color;
 import 'package:color_models/color_models.dart' as cm;
 import '../color_model.dart';
-import '../helpers/to_color.dart';
+import 'helpers/as_color.dart';
+import 'helpers/rgb_getters.dart';
+import 'helpers/to_color.dart';
 
 /// A color in the CIEXYZ color space.
-class XyzColor extends cm.XyzColor with ToColor {
+class XyzColor extends cm.XyzColor with AsColor, RgbGetters, ToColor implements Color {
   /// A color in the CIEXYZ color space.
   ///
   /// [x], [y], and [z] must all be `>= 0`.
@@ -26,7 +28,10 @@ class XyzColor extends cm.XyzColor with ToColor {
         super(x, y, z, alpha);
 
   @override
-  List<XyzColor> interpolateTo(
+  int get value => toColor().value;
+
+  @override
+  List<XyzColor> lerpTo(
     ColorModel color,
     int steps, {
     bool excludeOriginalColors = false,
@@ -35,7 +40,7 @@ class XyzColor extends cm.XyzColor with ToColor {
     assert(steps != null && steps > 0);
     assert(excludeOriginalColors != null);
 
-    final colors = ToColor.cast(this).interpolateTo(ToColor.cast(color), steps,
+    final colors = ToColor.cast(this).lerpTo(ToColor.cast(color), steps,
         excludeOriginalColors: excludeOriginalColors);
 
     return List<XyzColor>.from(colors.map(ToColor.cast));
@@ -94,10 +99,38 @@ class XyzColor extends cm.XyzColor with ToColor {
   }
 
   @override
-  XyzColor withAlpha(num alpha) {
+  XyzColor withRed(num red) {
+    assert(red != null && red >= 0 && red <= 255);
+
+    return toRgbColor().withRed(red).toXyzColor();
+  }
+
+  @override
+  XyzColor withGreen(num green) {
+    assert(green != null && green >= 0 && green <= 255);
+
+    return toRgbColor().withGreen(green).toXyzColor();
+  }
+
+  @override
+  XyzColor withBlue(num blue) {
+    assert(blue != null && blue >= 0 && blue <= 255);
+
+    return toRgbColor().withBlue(blue).toXyzColor();
+  }
+
+  @override
+  XyzColor withAlpha(int alpha) {
     assert(alpha != null && alpha >= 0 && alpha <= 255);
 
     return XyzColor(x, y, z, alpha);
+  }
+
+  @override
+  XyzColor withOpacity(double opacity) {
+    assert(opacity != null && opacity >= 0.0 && opacity <= 1.0);
+
+    return withAlpha((opacity * 255).round());
   }
 
   /// Returns this [XyzColor] modified with the provided [hue] value.

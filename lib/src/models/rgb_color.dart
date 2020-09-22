@@ -1,7 +1,8 @@
-import 'package:flutter/material.dart' show Color;
+import 'package:flutter/painting.dart' show Color;
 import 'package:color_models/color_models.dart' as cm;
 import '../color_model.dart';
-import '../helpers/to_color.dart';
+import 'helpers/as_color.dart';
+import 'helpers/to_color.dart';
 
 /// A color in the sRGB color space.
 ///
@@ -12,7 +13,7 @@ import '../helpers/to_color.dart';
 /// getters set for [red], [green], and [blue] that return the rounded
 /// [int] values. The precise values can returned as a list with the
 /// [toPreciseList] and [toPreciseListWithAlpha] methods.
-class RgbColor extends cm.RgbColor with ToColor {
+class RgbColor extends cm.RgbColor with AsColor, ToColor implements Color {
   /// A color in the sRGB color space.
   ///
   /// [_red], [_green], and [_blue] must all be `>= 0` and `<= 255`.
@@ -28,7 +29,10 @@ class RgbColor extends cm.RgbColor with ToColor {
         super(red, green, blue, alpha);
 
   @override
-  List<RgbColor> interpolateTo(
+  int get value => toColor().value;
+
+  @override
+  List<RgbColor> lerpTo(
     ColorModel color,
     int steps, {
     bool excludeOriginalColors = false,
@@ -37,7 +41,7 @@ class RgbColor extends cm.RgbColor with ToColor {
     assert(steps != null && steps > 0);
     assert(excludeOriginalColors != null);
 
-    final colors = ToColor.cast(this).interpolateTo(ToColor.cast(color), steps,
+    final colors = ToColor.cast(this).lerpTo(ToColor.cast(color), steps,
         excludeOriginalColors: excludeOriginalColors);
 
     return List<RgbColor>.from(colors.map(ToColor.cast));
@@ -96,10 +100,17 @@ class RgbColor extends cm.RgbColor with ToColor {
   }
 
   @override
-  RgbColor withAlpha(num alpha) {
+  RgbColor withAlpha(int alpha) {
     assert(alpha != null && alpha >= 0 && alpha <= 255);
 
     return RgbColor(red, green, blue, alpha);
+  }
+
+  @override
+  RgbColor withOpacity(double opacity) {
+    assert(opacity != null && opacity >= 0.0 && opacity <= 1.0);
+
+    return withAlpha((opacity * 255).round());
   }
 
   /// Returns this [RgbColor] modified with the provided [hue] value.
@@ -149,7 +160,7 @@ class RgbColor extends cm.RgbColor with ToColor {
   factory RgbColor.fromColor(Color color) {
     assert(color != null);
 
-    return RgbColor(color.red, color.green, color.blue);
+    return RgbColor(color.red, color.green, color.blue, color.alpha);
   }
 
   /// Constructs a [RgbColor] from a [hex] color.

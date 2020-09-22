@@ -1,5 +1,4 @@
 export 'package:color_models/color_models.dart' show ColorModel;
-export 'helpers/cast_to_color.dart';
 export 'models/cmyk_color.dart';
 export 'models/hsb_color.dart';
 export 'models/hsi_color.dart';

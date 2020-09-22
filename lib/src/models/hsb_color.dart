@@ -1,13 +1,15 @@
-import 'package:flutter/material.dart' show Color;
+import 'package:flutter/painting.dart' show Color;
 import 'package:color_models/color_models.dart' as cm;
 import '../color_model.dart';
-import '../helpers/to_color.dart';
+import 'helpers/as_color.dart';
+import 'helpers/rgb_getters.dart';
+import 'helpers/to_color.dart';
 
 /// A color in the HSB (HSB) color space.
 ///
 /// The HSB color space contains channels for [hue],
 /// [saturation], and [brightness].
-class HsbColor extends cm.HsbColor with ToColor {
+class HsbColor extends cm.HsbColor with AsColor, RgbGetters, ToColor implements Color {
   /// A color in the HSB (HSB) color space.
   ///
   /// [hue] must be `>= 0` and `<= 360`.
@@ -25,7 +27,10 @@ class HsbColor extends cm.HsbColor with ToColor {
         super(hue, saturation, brightness, alpha);
 
   @override
-  List<HsbColor> interpolateTo(
+  int get value => toColor().value;
+
+  @override
+  List<HsbColor> lerpTo(
     ColorModel color,
     int steps, {
     bool excludeOriginalColors = false,
@@ -34,7 +39,7 @@ class HsbColor extends cm.HsbColor with ToColor {
     assert(steps != null && steps > 0);
     assert(excludeOriginalColors != null);
 
-    final colors = ToColor.cast(this).interpolateTo(ToColor.cast(color), steps,
+    final colors = ToColor.cast(this).lerpTo(ToColor.cast(color), steps,
         excludeOriginalColors: excludeOriginalColors);
 
     return List<HsbColor>.from(colors.map(ToColor.cast));
@@ -93,10 +98,38 @@ class HsbColor extends cm.HsbColor with ToColor {
   }
 
   @override
-  HsbColor withAlpha(num alpha) {
+  HsbColor withRed(num red) {
+    assert(red != null && red >= 0 && red <= 255);
+
+    return toRgbColor().withRed(red).toHsbColor();
+  }
+
+  @override
+  HsbColor withGreen(num green) {
+    assert(green != null && green >= 0 && green <= 255);
+
+    return toRgbColor().withGreen(green).toHsbColor();
+  }
+
+  @override
+  HsbColor withBlue(num blue) {
+    assert(blue != null && blue >= 0 && blue <= 255);
+
+    return toRgbColor().withBlue(blue).toHsbColor();
+  }
+
+  @override
+  HsbColor withAlpha(int alpha) {
     assert(alpha != null && alpha >= 0 && alpha <= 255);
 
     return HsbColor(hue, saturation, brightness, alpha);
+  }
+
+  @override
+  HsbColor withOpacity(double opacity) {
+    assert(opacity != null && opacity >= 0.0 && opacity <= 1.0);
+
+    return withAlpha((opacity * 255).round());
   }
 
   @override

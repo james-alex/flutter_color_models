@@ -1,13 +1,15 @@
-import 'package:flutter/material.dart' show Color;
+import 'package:flutter/painting.dart' show Color;
 import 'package:color_models/color_models.dart' as cm;
 import '../color_model.dart';
-import '../helpers/to_color.dart';
+import 'helpers/as_color.dart';
+import 'helpers/rgb_getters.dart';
+import 'helpers/to_color.dart';
 
 /// A color in the CMYK color space.
 ///
 /// The CMYK color space contains channels for [cyan],
 /// [magenta], [yellow], and [black].
-class CmykColor extends cm.CmykColor with ToColor {
+class CmykColor extends cm.CmykColor with AsColor, RgbGetters, ToColor implements Color {
   /// A color in the CMYK color space.
   ///
   /// [cyan], [magenta], [yellow], and [black]
@@ -26,7 +28,10 @@ class CmykColor extends cm.CmykColor with ToColor {
         super(cyan, magenta, yellow, black, alpha);
 
   @override
-  List<CmykColor> interpolateTo(
+  int get value => toColor().value;
+
+  @override
+  List<CmykColor> lerpTo(
     ColorModel color,
     int steps, {
     bool excludeOriginalColors = false,
@@ -35,7 +40,7 @@ class CmykColor extends cm.CmykColor with ToColor {
     assert(steps != null && steps > 0);
     assert(excludeOriginalColors != null);
 
-    final colors = ToColor.cast(this).interpolateTo(ToColor.cast(color), steps,
+    final colors = ToColor.cast(this).lerpTo(ToColor.cast(color), steps,
         excludeOriginalColors: excludeOriginalColors);
 
     return List<CmykColor>.from(colors.map(ToColor.cast));
@@ -100,12 +105,40 @@ class CmykColor extends cm.CmykColor with ToColor {
     return CmykColor(cyan, magenta, yellow, black, alpha);
   }
 
+  @override
+  CmykColor withRed(num red) {
+    assert(red != null && red >= 0 && red <= 255);
+
+    return toRgbColor().withRed(red).toCmykColor();
+  }
+
+  @override
+  CmykColor withGreen(num green) {
+    assert(green != null && green >= 0 && green <= 255);
+
+    return toRgbColor().withGreen(green).toCmykColor();
+  }
+
+  @override
+  CmykColor withBlue(num blue) {
+    assert(blue != null && blue >= 0 && blue <= 255);
+
+    return toRgbColor().withBlue(blue).toCmykColor();
+  }
+
   /// Returns this [CmykColor] modified with the provided [alpha] value.
   @override
-  CmykColor withAlpha(num alpha) {
+  CmykColor withAlpha(int alpha) {
     assert(alpha != null && alpha >= 0 && alpha <= 255);
 
     return CmykColor(cyan, magenta, yellow, black, alpha);
+  }
+
+  @override
+  CmykColor withOpacity(double opacity) {
+    assert(opacity != null && opacity >= 0.0 && opacity <= 1.0);
+
+    return withAlpha((opacity * 255).round());
   }
 
   @override

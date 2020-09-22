@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart' show Color;
+import 'package:flutter/painting.dart' show Color;
 import 'package:color_models/color_models.dart' as cm;
-import '../color_model.dart';
-import './cast_to_color.dart' as ctc;
+import '../../color_model.dart';
+import 'cast_to_color.dart' as ctc;
 
 /// Mixes in methods to convert a color to any other color model.
 mixin ToColor on ColorModel {
@@ -12,7 +12,7 @@ mixin ToColor on ColorModel {
     return (RgbColor.from(this) == RgbColor.from(color));
   }
 
-  /// Converts `this` to a [Color].
+  /// Returns `this` as a [Color], converting the model to RGB if necessary.
   Color toColor() => ctc.toColor(this);
 
   /// Converts `this` to the CMYK color space.

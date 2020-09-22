@@ -1,5 +1,5 @@
 import 'package:flutter/painting.dart' show Color;
-import '../color_model.dart';
+import '../../color_model.dart';
 
 /// Returns [color] as a [Color].
 Color toColor(ColorModel color) {
