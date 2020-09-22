@@ -151,7 +151,7 @@ void main() {
                 : _toColorModel(colorModel1, _testColors[j]).toListWithAlpha();
 
             for (var steps = 1; steps <= 100; steps++) {
-              final colors = color1.interpolateTo(color2, steps);
+              final colors = color1.lerpTo(color2, steps);
 
               for (var k = 0; k < colors.length; k++) {
                 final step = (1 / (steps + 1)) * k;
