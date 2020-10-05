@@ -8,7 +8,7 @@ import 'helpers/to_color.dart';
 /// A color in the CIEXYZ color space.
 class XyzColor extends cm.XyzColor
     with AsColor, RgbGetters, ToColor
-    implements Color {
+    implements ColorModel {
   /// A color in the CIEXYZ color space.
   ///
   /// [x], [y], and [z] must all be `>= 0`.
@@ -34,7 +34,7 @@ class XyzColor extends cm.XyzColor
 
   @override
   List<XyzColor> lerpTo(
-    ColorModel color,
+    cm.ColorModel color,
     int steps, {
     bool excludeOriginalColors = false,
   }) {
@@ -149,7 +149,7 @@ class XyzColor extends cm.XyzColor
   XyzColor toXyzColor() => this;
 
   /// Constructs a [XyzColor] from [color].
-  factory XyzColor.from(ColorModel color) {
+  factory XyzColor.from(cm.ColorModel color) {
     assert(color != null);
 
     color = ToColor.cast(color);

@@ -11,7 +11,7 @@ import 'helpers/to_color.dart';
 /// [saturation], and [lightness].
 class HslColor extends cm.HslColor
     with AsColor, RgbGetters, ToColor
-    implements Color {
+    implements ColorModel {
   /// A color in the HSL color space.
   ///
   /// [hue] must be `>= 0` and `<= 360`.
@@ -33,7 +33,7 @@ class HslColor extends cm.HslColor
 
   @override
   List<HslColor> lerpTo(
-    ColorModel color,
+    cm.ColorModel color,
     int steps, {
     bool excludeOriginalColors = false,
   }) {
@@ -138,7 +138,7 @@ class HslColor extends cm.HslColor
   HslColor toHslColor() => this;
 
   /// Constructs a [HslColor] from [color].
-  factory HslColor.from(ColorModel color) {
+  factory HslColor.from(cm.ColorModel color) {
     assert(color != null);
 
     color = ToColor.cast(color);

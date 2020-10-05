@@ -14,7 +14,7 @@ import 'helpers/to_color.dart';
 /// Read about it here: http://alienryderflex.com/hsp.html
 class HspColor extends cm.HspColor
     with AsColor, RgbGetters, ToColor
-    implements Color {
+    implements ColorModel {
   /// A color in the HSP color space.
   ///
   /// [hue] must be `>= 0` and `<= 360`.
@@ -38,7 +38,7 @@ class HspColor extends cm.HspColor
 
   @override
   List<HspColor> lerpTo(
-    ColorModel color,
+    cm.ColorModel color,
     int steps, {
     bool excludeOriginalColors = false,
   }) {
@@ -145,7 +145,7 @@ class HspColor extends cm.HspColor
   HspColor toHspColor() => this;
 
   /// Constructs a [HspColor] from [color].
-  factory HspColor.from(ColorModel color) {
+  factory HspColor.from(cm.ColorModel color) {
     assert(color != null);
 
     color = ToColor.cast(color);

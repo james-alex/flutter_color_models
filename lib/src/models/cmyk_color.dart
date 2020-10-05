@@ -11,7 +11,7 @@ import 'helpers/to_color.dart';
 /// [magenta], [yellow], and [black].
 class CmykColor extends cm.CmykColor
     with AsColor, RgbGetters, ToColor
-    implements Color {
+    implements ColorModel {
   /// A color in the CMYK color space.
   ///
   /// [cyan], [magenta], [yellow], and [black]
@@ -34,7 +34,7 @@ class CmykColor extends cm.CmykColor
 
   @override
   List<CmykColor> lerpTo(
-    ColorModel color,
+    cm.ColorModel color,
     int steps, {
     bool excludeOriginalColors = false,
   }) {
@@ -156,7 +156,7 @@ class CmykColor extends cm.CmykColor
   CmykColor toCmykColor() => this;
 
   /// Constructs a [CmykColor] from [color].
-  factory CmykColor.from(ColorModel color) {
+  factory CmykColor.from(cm.ColorModel color) {
     assert(color != null);
 
     color = ToColor.cast(color);

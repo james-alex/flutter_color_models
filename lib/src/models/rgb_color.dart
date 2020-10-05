@@ -13,7 +13,7 @@ import 'helpers/to_color.dart';
 /// getters set for [red], [green], and [blue] that return the rounded
 /// [int] values. The precise values can returned as a list with the
 /// [toPreciseList] and [toPreciseListWithAlpha] methods.
-class RgbColor extends cm.RgbColor with AsColor, ToColor implements Color {
+class RgbColor extends cm.RgbColor with AsColor, ToColor implements ColorModel {
   /// A color in the sRGB color space.
   ///
   /// [_red], [_green], and [_blue] must all be `>= 0` and `<= 255`.
@@ -33,7 +33,7 @@ class RgbColor extends cm.RgbColor with AsColor, ToColor implements Color {
 
   @override
   List<RgbColor> lerpTo(
-    ColorModel color,
+    cm.ColorModel color,
     int steps, {
     bool excludeOriginalColors = false,
   }) {
@@ -127,7 +127,7 @@ class RgbColor extends cm.RgbColor with AsColor, ToColor implements Color {
   RgbColor toRgbColor() => this;
 
   /// Constructs a [RgbColor] from [color].
-  factory RgbColor.from(ColorModel color) {
+  factory RgbColor.from(cm.ColorModel color) {
     assert(color != null);
 
     color = ToColor.cast(color);

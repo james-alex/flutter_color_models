@@ -11,7 +11,7 @@ import 'helpers/to_color.dart';
 /// [saturation], and [intensity].
 class HsiColor extends cm.HsiColor
     with AsColor, RgbGetters, ToColor
-    implements Color {
+    implements ColorModel {
   /// A color in the HSI color space.
   ///
   /// [hue] must be `>= 0` and `<= 360`.
@@ -33,7 +33,7 @@ class HsiColor extends cm.HsiColor
 
   @override
   List<HsiColor> lerpTo(
-    ColorModel color,
+    cm.ColorModel color,
     int steps, {
     bool excludeOriginalColors = false,
   }) {
@@ -138,7 +138,7 @@ class HsiColor extends cm.HsiColor
   HsiColor toHsiColor() => this;
 
   /// Constructs a [HsiColor] from [color].
-  factory HsiColor.from(ColorModel color) {
+  factory HsiColor.from(cm.ColorModel color) {
     assert(color != null);
 
     color = ToColor.cast(color);

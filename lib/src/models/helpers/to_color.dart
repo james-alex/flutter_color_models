@@ -4,9 +4,9 @@ import '../../color_model.dart';
 import 'cast_to_color.dart' as ctc;
 
 /// Mixes in methods to convert a color to any other color model.
-mixin ToColor on ColorModel {
+mixin ToColor on cm.ColorModel {
   @override
-  bool equals(ColorModel color) {
+  bool equals(cm.ColorModel color) {
     assert(color != null);
 
     return (RgbColor.from(this) == RgbColor.from(color));
@@ -49,7 +49,7 @@ mixin ToColor on ColorModel {
 
   /// Casts [ColorModel]s to and from this package's models
   /// and the color_model package's models.
-  static ColorModel cast(ColorModel color) {
+  static cm.ColorModel cast(cm.ColorModel color) {
     assert(color != null);
 
     switch (color.runtimeType) {

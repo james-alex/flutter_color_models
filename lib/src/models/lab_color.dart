@@ -12,7 +12,7 @@ import 'helpers/to_color.dart';
 /// yellow opponent values.)
 class LabColor extends cm.LabColor
     with AsColor, RgbGetters, ToColor
-    implements Color {
+    implements ColorModel {
   /// A color in the CIELAB color space.
   ///
   /// [lightness] must be `>= 0` and `<= 100`.
@@ -34,7 +34,7 @@ class LabColor extends cm.LabColor
 
   @override
   List<LabColor> lerpTo(
-    ColorModel color,
+    cm.ColorModel color,
     int steps, {
     bool excludeOriginalColors = false,
   }) {
@@ -149,7 +149,7 @@ class LabColor extends cm.LabColor
   LabColor toLabColor() => this;
 
   /// Constructs a [LabColor] from [color].
-  factory LabColor.from(ColorModel color) {
+  factory LabColor.from(cm.ColorModel color) {
     assert(color != null);
 
     color = ToColor.cast(color);
