@@ -14,6 +14,7 @@ dependencies:
   flutter:
     sdk: flutter
   color_models: ^0.3.0+1
+  meta: ^1.2.3
 
 dev_dependencies:
   flutter_test:

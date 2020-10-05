@@ -1,3 +1,10 @@
+## [0.3.0] - October 4, 2020
+
+* Created a new base [ColorModel] class that implements [Color] that each of the models
+now implement. Before, this packages [ColorModel]s extended the color_models package's
+[ColorModel] class and implemented [Color] individually. Now, this package's [ColorModel]s
+can be provided as a [Color] without needing to typecast them first.
+
 ## [0.2.0] - September 21, 2020
 
 * All color models now implement Flutter's [Color] class.
