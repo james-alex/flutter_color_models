@@ -49,7 +49,7 @@ class LabColor extends cm.LabColor
   }
 
   @override
-  LabColor get inverted => ToColor.cast(ToColor.cast(this).inverted);
+  LabColor get inverted => ToColor.cast(super.inverted);
 
   @override
   LabColor get opposite => rotateHue(180);
@@ -58,9 +58,7 @@ class LabColor extends cm.LabColor
   LabColor rotateHue(num amount) {
     assert(amount != null);
 
-    final hslColor = toHslColor();
-
-    return hslColor.withHue((hslColor.hue + amount) % 360).toLabColor();
+    return ToColor.cast(super.rotateHue(amount));
   }
 
   @override
@@ -68,7 +66,7 @@ class LabColor extends cm.LabColor
     assert(amount != null && amount > 0);
     assert(relative != null);
 
-    return ToColor.cast(ToColor.cast(this).warmer(amount, relative: relative));
+    return ToColor.cast(super.warmer(amount, relative: relative));
   }
 
   @override
@@ -76,7 +74,7 @@ class LabColor extends cm.LabColor
     assert(amount != null && amount > 0);
     assert(relative != null);
 
-    return ToColor.cast(ToColor.cast(this).cooler(amount, relative: relative));
+    return ToColor.cast(super.cooler(amount, relative: relative));
   }
 
   @override

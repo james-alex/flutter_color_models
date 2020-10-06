@@ -48,7 +48,7 @@ class HsiColor extends cm.HsiColor
   }
 
   @override
-  HsiColor get inverted => ToColor.cast(ToColor.cast(this).inverted);
+  HsiColor get inverted => ToColor.cast(super.inverted);
 
   @override
   HsiColor get opposite => rotateHue(180);
@@ -57,9 +57,7 @@ class HsiColor extends cm.HsiColor
   HsiColor rotateHue(num amount) {
     assert(amount != null);
 
-    final hslColor = toHslColor();
-
-    return withHue((hslColor.hue + amount) % 360);
+    return ToColor.cast(super.rotateHue(amount));
   }
 
   @override
@@ -67,7 +65,7 @@ class HsiColor extends cm.HsiColor
     assert(amount != null && amount > 0);
     assert(relative != null);
 
-    return ToColor.cast(ToColor.cast(this).warmer(amount, relative: relative));
+    return ToColor.cast(super.warmer(amount, relative: relative));
   }
 
   @override
@@ -75,7 +73,7 @@ class HsiColor extends cm.HsiColor
     assert(amount != null && amount > 0);
     assert(relative != null);
 
-    return ToColor.cast(ToColor.cast(this).cooler(amount, relative: relative));
+    return ToColor.cast(super.cooler(amount, relative: relative));
   }
 
   @override
