@@ -1,3 +1,7 @@
+## [0.3.1] - October 6, 2020
+
+* Re-implemented the [toColor] method.
+
 ## [0.3.0] - October 4, 2020
 
 * Created a new base [ColorModel] class that implements [Color] that each of the models

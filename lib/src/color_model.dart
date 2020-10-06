@@ -13,6 +13,9 @@ export 'models/xyz_color.dart';
 
 @immutable
 abstract class ColorModel implements cm.ColorModel, Color {
+  /// Returns `this` as a [Color], converting the model to RGB if necessary.
+  Color toColor();
+
   @override
   ColorModel withAlpha(int alpha);
 
