@@ -152,7 +152,8 @@ class HspColor extends cm.HspColor
 
     final hsp = cm.ColorConverter.toHspColor(color);
 
-    return HspColor(hsp.hue, hsp.saturation, hsp.perceivedBrightness);
+    return HspColor(
+        hsp.hue, hsp.saturation, hsp.perceivedBrightness, hsp.alpha);
   }
 
   /// Constructs a [HspColor] from a list of [hsp] values.

@@ -156,7 +156,7 @@ class LabColor extends cm.LabColor
 
     final lab = cm.ColorConverter.toLabColor(color);
 
-    return LabColor(lab.lightness, lab.a, lab.b);
+    return LabColor(lab.lightness, lab.a, lab.b, lab.alpha);
   }
 
   /// Constructs a [LabColor] from a list of [lab] values.

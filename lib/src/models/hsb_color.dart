@@ -145,7 +145,7 @@ class HsbColor extends cm.HsbColor
 
     final hsb = cm.ColorConverter.toHsbColor(color);
 
-    return HsbColor(hsb.hue, hsb.saturation, hsb.brightness);
+    return HsbColor(hsb.hue, hsb.saturation, hsb.brightness, hsb.alpha);
   }
 
   /// Constructs a [HsbColor] from a list of [hsb] values.

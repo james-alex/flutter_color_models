@@ -163,7 +163,8 @@ class CmykColor extends cm.CmykColor
 
     final cmyk = cm.ColorConverter.toCmykColor(color);
 
-    return CmykColor(cmyk.cyan, cmyk.magenta, cmyk.yellow, cmyk.black);
+    return CmykColor(
+        cmyk.cyan, cmyk.magenta, cmyk.yellow, cmyk.black, cmyk.alpha);
   }
 
   /// Constructs a [CmykColor] from a list of [cmyk] values.

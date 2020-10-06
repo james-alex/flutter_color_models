@@ -156,7 +156,7 @@ class XyzColor extends cm.XyzColor
 
     final xyz = cm.ColorConverter.toXyzColor(color);
 
-    return XyzColor(xyz.x, xyz.y, xyz.z);
+    return XyzColor(xyz.x, xyz.y, xyz.z, xyz.alpha);
   }
 
   /// Constructs a [XyzColor] from a list of [xyz] values.

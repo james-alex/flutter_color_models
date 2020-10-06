@@ -134,7 +134,7 @@ class RgbColor extends cm.RgbColor with AsColor, ToColor implements ColorModel {
 
     final rgb = color.toRgbColor();
 
-    return RgbColor(rgb.red, rgb.green, rgb.blue);
+    return RgbColor(rgb.red, rgb.green, rgb.blue, rgb.alpha);
   }
 
   /// Constructs a [RgbColor] from a list of [rgb] values.

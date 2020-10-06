@@ -145,7 +145,7 @@ class HslColor extends cm.HslColor
 
     final hsl = cm.ColorConverter.toHslColor(color);
 
-    return HslColor(hsl.hue, hsl.saturation, hsl.lightness);
+    return HslColor(hsl.hue, hsl.saturation, hsl.lightness, hsl.alpha);
   }
 
   /// Constructs a [HslColor] from a list of [hsl] values.

@@ -1,3 +1,8 @@
+## [0.3.2] - October 6, 2020
+
+* Bug fix: The [from] constructors now copy the alpha value from the color
+they're being constructed from.
+
 ## [0.3.1] - October 6, 2020
 
 * Re-implemented the [toColor] method.

@@ -145,7 +145,7 @@ class HsiColor extends cm.HsiColor
 
     final hsi = cm.ColorConverter.toHsiColor(color);
 
-    return HsiColor(hsi.hue, hsi.saturation, hsi.intensity);
+    return HsiColor(hsi.hue, hsi.saturation, hsi.intensity, hsi.alpha);
   }
 
   /// Constructs a [HsiColor] from a list of [hsi] values.
