@@ -57,7 +57,7 @@ class HsiColor extends cm.HsiColor
   HsiColor rotateHue(num amount) {
     assert(amount != null);
 
-    return ToColor.cast(super.rotateHue(amount));
+    return ToColor.cast(ToColor.cast(this).rotateHue(amount));
   }
 
   @override
@@ -65,7 +65,7 @@ class HsiColor extends cm.HsiColor
     assert(amount != null && amount > 0);
     assert(relative != null);
 
-    return ToColor.cast(super.warmer(amount, relative: relative));
+    return ToColor.cast(ToColor.cast(this).warmer(amount, relative: relative));
   }
 
   @override
@@ -73,7 +73,7 @@ class HsiColor extends cm.HsiColor
     assert(amount != null && amount > 0);
     assert(relative != null);
 
-    return ToColor.cast(super.cooler(amount, relative: relative));
+    return ToColor.cast(ToColor.cast(this).cooler(amount, relative: relative));
   }
 
   @override

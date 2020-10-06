@@ -1,7 +1,8 @@
 ## [0.3.3] - October 6, 2020
 
 * Updated all methods on each color model that rely on their parent's equivalent
-method to call their super method, rather than casting back and forth between types.
+method to call their super method, rather than casting back and forth between types,
+where applicable.
 
 ## [0.3.2] - October 6, 2020
 
