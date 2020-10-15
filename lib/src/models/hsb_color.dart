@@ -91,7 +91,7 @@ class HsbColor extends cm.HsbColor
   }
 
   @override
-  HsbColor withBrightness(num value) {
+  HsbColor withBrightness(num brightness) {
     assert(value != null && value >= 0 && value <= 100);
 
     return HsbColor(hue, saturation, brightness, alpha);
