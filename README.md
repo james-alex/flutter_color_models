@@ -1,6 +1,7 @@
 # flutter_color_models
 
-[![pub package](https://img.shields.io/pub/v/flutter_color_models.svg)](https://pub.dartlang.org/packages/flutter_color_models)
+__NOTICE: This repo has been merged into the [color_models](https://github.com/james-alex/color_models)
+repo and is being maintained there.__
 
 A wrapper for the color_models plugin that implements Flutter's [Color] class.
 
